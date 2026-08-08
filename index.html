@@ -16,6 +16,7 @@
             box-sizing: border-box;
         }
 
+        /* ── Light Theme (default) ── */
         :root {
             --primary: #1a2a6c;
             --primary-light: #2d4a8e;
@@ -32,6 +33,56 @@
             --sidebar-width: 300px;
             --header-height: 64px;
             --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --tag-bg: var(--primary);
+            --tag-text: #fff;
+            --info-box-bg: rgba(26, 42, 108, 0.04);
+            --info-box-border: var(--primary);
+            --table-header-bg: var(--primary);
+            --table-header-text: #fff;
+            --table-row-even: rgba(0, 0, 0, 0.02);
+            --table-border: var(--border);
+            --highlight-bg: rgba(245, 166, 35, 0.35);
+            --sidebar-bg: var(--primary-dark);
+            --sidebar-text: rgba(255,255,255,0.75);
+            --sidebar-active-bg: rgba(255,255,255,0.1);
+            --sidebar-hover-bg: rgba(255,255,255,0.07);
+            --search-bg: var(--card-bg);
+            --search-border: var(--border);
+            --shadow-card: var(--shadow);
+            --badge-bg: var(--bg);
+        }
+
+        /* ── Dark Theme ── */
+        body.dark-mode {
+            --bg: #121826;
+            --card-bg: #1e2436;
+            --text: #e2e8f0;
+            --text-light: #94a3b8;
+            --border: #2d3748;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            --primary: #4a6fa5;
+            --primary-light: #6b8fc9;
+            --primary-dark: #0b1a33;
+            --accent: #f5a623;
+            --accent-light: #ffd966;
+            --tag-bg: #4a6fa5;
+            --tag-text: #fff;
+            --info-box-bg: rgba(74, 111, 165, 0.12);
+            --info-box-border: #4a6fa5;
+            --table-header-bg: #2d3748;
+            --table-header-text: #e2e8f0;
+            --table-row-even: rgba(255,255,255,0.03);
+            --table-border: #2d3748;
+            --highlight-bg: rgba(245, 166, 35, 0.3);
+            --sidebar-bg: #0b1a33;
+            --sidebar-text: rgba(255,255,255,0.8);
+            --sidebar-active-bg: rgba(74, 111, 165, 0.3);
+            --sidebar-hover-bg: rgba(255,255,255,0.06);
+            --search-bg: #1e2436;
+            --search-border: #2d3748;
+            --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.6);
+            --badge-bg: #2d3748;
+            --page-header-bg: rgba(18, 24, 38, 0.88);
         }
 
         html {
@@ -45,6 +96,7 @@
             line-height: 1.6;
             display: flex;
             min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
         }
 
         /* ── Scrollbar ── */
@@ -70,11 +122,11 @@
             left: 0;
             width: var(--sidebar-width);
             height: 100vh;
-            background: var(--primary-dark);
+            background: var(--sidebar-bg);
             color: #fff;
             overflow-y: auto;
             z-index: 1000;
-            transition: transform var(--transition);
+            transition: transform var(--transition), background 0.3s;
             padding: 20px 0 30px;
             display: flex;
             flex-direction: column;
@@ -129,7 +181,7 @@
             gap: 12px;
             padding: 10px 14px;
             border-radius: 10px;
-            color: rgba(255, 255, 255, 0.75);
+            color: var(--sidebar-text);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
@@ -150,7 +202,7 @@
         }
 
         .sidebar-nav a:hover {
-            background: rgba(255, 255, 255, 0.07);
+            background: var(--sidebar-hover-bg);
             color: #fff;
         }
 
@@ -159,7 +211,7 @@
         }
 
         .sidebar-nav a.active {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--sidebar-active-bg);
             color: #fff;
             box-shadow: inset 3px 0 0 var(--accent);
         }
@@ -233,7 +285,8 @@
             top: 0;
             z-index: 100;
             backdrop-filter: blur(8px);
-            background: rgba(244, 246, 252, 0.88);
+            background: var(--page-header-bg, rgba(244, 246, 252, 0.88));
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .page-header h2 {
@@ -250,15 +303,22 @@
             font-size: 24px;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
         .search-wrap {
             display: flex;
             align-items: center;
             gap: 8px;
-            background: var(--card-bg);
+            background: var(--search-bg);
             padding: 6px 16px 6px 18px;
             border-radius: 40px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-            border: 1px solid var(--border);
+            border: 1px solid var(--search-border);
             transition: var(--transition);
             min-width: 220px;
         }
@@ -296,6 +356,37 @@
             font-weight: 500;
         }
 
+        /* ── Theme Toggle ── */
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text);
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-light);
+        }
+
+        .theme-toggle i {
+            transition: transform 0.3s;
+        }
+
+        body.dark-mode .theme-toggle i {
+            transform: rotate(20deg);
+        }
+
         /* ── Content Cards ── */
         .content-section {
             display: block;
@@ -320,11 +411,11 @@
         .note-card {
             background: var(--card-bg);
             border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-card);
             padding: 28px 32px;
             margin-bottom: 28px;
             border: 1px solid var(--border);
-            transition: var(--transition);
+            transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
         }
 
         .note-card:hover {
@@ -380,8 +471,8 @@
 
         .note-card .tag {
             display: inline-block;
-            background: var(--primary);
-            color: #fff;
+            background: var(--tag-bg);
+            color: var(--tag-text);
             font-size: 12px;
             font-weight: 600;
             padding: 2px 12px;
@@ -432,7 +523,7 @@
         }
 
         .badge-list .badge {
-            background: var(--bg);
+            background: var(--badge-bg);
             padding: 4px 14px;
             border-radius: 20px;
             font-size: 13px;
@@ -451,7 +542,7 @@
             overflow-x: auto;
             margin: 14px 0 6px;
             border-radius: 12px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--table-border);
         }
 
         .note-table {
@@ -461,8 +552,8 @@
         }
 
         .note-table th {
-            background: var(--primary);
-            color: #fff;
+            background: var(--table-header-bg);
+            color: var(--table-header-text);
             font-weight: 600;
             padding: 12px 16px;
             text-align: left;
@@ -470,7 +561,7 @@
 
         .note-table td {
             padding: 10px 16px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--table-border);
         }
 
         .note-table tr:last-child td {
@@ -478,16 +569,17 @@
         }
 
         .note-table tr:nth-child(even) {
-            background: rgba(0, 0, 0, 0.02);
+            background: var(--table-row-even);
         }
 
         /* ── Special Blocks ── */
         .info-box {
-            background: rgba(26, 42, 108, 0.04);
-            border-left: 4px solid var(--primary);
+            background: var(--info-box-bg);
+            border-left: 4px solid var(--info-box-border);
             padding: 16px 20px;
             border-radius: 8px;
             margin: 14px 0;
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .info-box.warm {
@@ -521,6 +613,7 @@
             border-radius: 12px;
             padding: 16px 20px;
             border: 1px solid var(--border);
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .stage-card .age {
@@ -543,7 +636,7 @@
 
         /* ── Search Highlight ── */
         .search-highlight {
-            background: rgba(245, 166, 35, 0.35);
+            background: var(--highlight-bg);
             padding: 1px 4px;
             border-radius: 4px;
         }
@@ -612,6 +705,13 @@
             .search-wrap input {
                 width: 100%;
             }
+            .header-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+            .header-actions .search-wrap {
+                flex: 1;
+            }
             .note-card {
                 padding: 20px 18px;
             }
@@ -634,6 +734,14 @@
                 font-size: 13px;
                 padding: 8px 12px;
             }
+            .header-actions {
+                flex-wrap: wrap;
+            }
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
         }
 
         /* ── Print tweaks ── */
@@ -641,7 +749,8 @@
             .sidebar,
             .menu-toggle,
             .sidebar-overlay,
-            .search-wrap {
+            .search-wrap,
+            .theme-toggle {
                 display: none !important;
             }
             .main {
@@ -658,6 +767,24 @@
                 box-shadow: none;
                 border: 1px solid #ccc;
             }
+            body.dark-mode .note-card {
+                border: 1px solid #666;
+            }
+        }
+
+        /* Dark mode overrides for info-box strong */
+        body.dark-mode .info-box strong {
+            color: var(--primary-light);
+        }
+        body.dark-mode .note-card .highlight {
+            color: var(--text);
+            background: rgba(245, 166, 35, 0.2);
+        }
+        body.dark-mode .stage-card {
+            background: var(--card-bg);
+        }
+        body.dark-mode .badge-list .badge {
+            background: var(--card-bg);
         }
     </style>
 </head>
@@ -718,10 +845,15 @@
         <!-- Header -->
         <header class="page-header">
             <h2><i class="fas fa-book"></i> <span id="sectionTitle">Development</span></h2>
-            <div class="search-wrap">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search notes..." autocomplete="off" />
-                <span class="search-results-count" id="searchCount"></span>
+            <div class="header-actions">
+                <div class="search-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search notes..." autocomplete="off" />
+                    <span class="search-results-count" id="searchCount"></span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </header>
 
@@ -1980,9 +2112,27 @@
             const searchInput = document.getElementById('searchInput');
             const searchCount = document.getElementById('searchCount');
             const noResults = document.getElementById('noResults');
+            const themeToggle = document.getElementById('themeToggle');
 
             let currentSection = 'development';
             let searchQuery = '';
+
+            // ── Theme ──
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const storedTheme = localStorage.getItem('ctet-theme');
+            let isDark = storedTheme ? storedTheme === 'dark' : prefersDark;
+
+            function setTheme(dark) {
+                document.body.classList.toggle('dark-mode', dark);
+                themeToggle.innerHTML = dark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+                localStorage.setItem('ctet-theme', dark ? 'dark' : 'light');
+                isDark = dark;
+            }
+
+            themeToggle.addEventListener('click', () => setTheme(!isDark));
+
+            // Init theme
+            setTheme(isDark);
 
             // ── Sidebar toggle ──
             function toggleSidebar(open) {
@@ -2064,7 +2214,6 @@
                 sections.forEach(section => {
                     // Clone to avoid disrupting live DOM
                     const clone = section.cloneNode(true);
-                    // Get all text nodes from clone
                     const walker = document.createTreeWalker(clone, NodeFilter.SHOW_TEXT, null, false);
                     const textNodes = [];
                     let node;
@@ -2077,7 +2226,6 @@
                         const text = textNode.textContent;
                         if (text.toLowerCase().includes(q)) {
                             sectionMatches++;
-                            // We'll highlight in the real DOM by traversing again
                         }
                     });
 
@@ -2085,12 +2233,10 @@
                         section.style.display = '';
                         visibleSections++;
                         totalMatches += sectionMatches;
-                        // Highlight in real DOM
                         highlightInElement(section, q);
                     } else {
                         if (section.dataset.section === currentSection) {
                             section.style.display = '';
-                            // Keep current section visible but with no highlights
                         } else {
                             section.style.display = 'none';
                         }
@@ -2140,7 +2286,6 @@
                     sections.forEach(s => s.style.display = '');
                     noResults.style.display = 'none';
                     searchCount.textContent = '';
-                    // Re-navigate to current section to reset
                     navigateTo(currentSection);
                     return;
                 }
@@ -2153,7 +2298,6 @@
                     e.preventDefault();
                     const section = this.dataset.section;
                     if (!section) return;
-                    // Clear search
                     searchInput.value = '';
                     searchQuery = '';
                     searchCount.textContent = '';
