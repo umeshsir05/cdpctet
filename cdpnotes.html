@@ -1,0 +1,2191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CTET CDP Complete Notes – Study Table Amrita</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <style>
+        /* ── Reset & Base ── */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a2a6c;
+            --primary-light: #2d4a8e;
+            --primary-dark: #0f1a44;
+            --accent: #f5a623;
+            --accent-light: #ffd966;
+            --bg: #f4f6fc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #475569;
+            --border: #e2e8f0;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+            --sidebar-width: 300px;
+            --header-height: 64px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* ── Sidebar ── */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--primary-dark);
+            color: #fff;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform var(--transition);
+            padding: 20px 0 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-brand {
+            padding: 0 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .sidebar-brand h1 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-brand h1 i {
+            color: var(--accent);
+            font-size: 22px;
+        }
+
+        .sidebar-brand .sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 4px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 16px 12px 20px;
+            overflow-y: auto;
+        }
+
+        .sidebar-nav .nav-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: rgba(255, 255, 255, 0.35);
+            padding: 12px 12px 6px;
+            font-weight: 600;
+        }
+
+        .sidebar-nav a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+        }
+
+        .sidebar-nav a i {
+            width: 20px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.4);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .sidebar-nav a:hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: #fff;
+        }
+
+        .sidebar-nav a:hover i {
+            color: var(--accent);
+        }
+
+        .sidebar-nav a.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            box-shadow: inset 3px 0 0 var(--accent);
+        }
+
+        .sidebar-nav a.active i {
+            color: var(--accent);
+        }
+
+        .sidebar-footer {
+            padding: 16px 24px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        /* ── Mobile Toggle ── */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 14px;
+            left: 16px;
+            z-index: 1100;
+            background: var(--primary-dark);
+            color: #fff;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.04);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 999;
+            backdrop-filter: blur(2px);
+        }
+
+        /* ── Main Content ── */
+        .main {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            min-height: 100vh;
+            padding: 0 32px 60px;
+            max-width: 1100px;
+        }
+
+        /* ── Header ── */
+        .page-header {
+            padding: 28px 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 28px;
+            background: var(--bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background: rgba(244, 246, 252, 0.88);
+        }
+
+        .page-header h2 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-header h2 i {
+            color: var(--accent);
+            font-size: 24px;
+        }
+
+        .search-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            padding: 6px 16px 6px 18px;
+            border-radius: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            min-width: 220px;
+        }
+
+        .search-wrap:focus-within {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.12);
+        }
+
+        .search-wrap i {
+            color: var(--text-light);
+            font-size: 15px;
+        }
+
+        .search-wrap input {
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 10px 4px;
+            font-size: 14px;
+            font-family: inherit;
+            color: var(--text);
+            width: 180px;
+        }
+
+        .search-wrap input::placeholder {
+            color: var(--text-light);
+            opacity: 0.6;
+        }
+
+        .search-results-count {
+            font-size: 13px;
+            color: var(--text-light);
+            padding: 0 4px;
+            font-weight: 500;
+        }
+
+        /* ── Content Cards ── */
+        .content-section {
+            display: block;
+            animation: fadeUp 0.4s ease;
+        }
+
+        .content-section.hidden {
+            display: none;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .note-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px 32px;
+            margin-bottom: 28px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .note-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+        }
+
+        .note-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .note-card h3 i {
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .note-card h4 {
+            font-size: 17px;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            color: var(--primary-dark);
+        }
+
+        .note-card p,
+        .note-card li {
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .note-card ul,
+        .note-card ol {
+            padding-left: 24px;
+            margin: 10px 0 14px;
+        }
+
+        .note-card li {
+            margin-bottom: 4px;
+        }
+
+        .note-card .highlight {
+            background: rgba(245, 166, 35, 0.12);
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        .note-card .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.3px;
+            margin-right: 6px;
+            margin-bottom: 4px;
+        }
+
+        .note-card .tag.gold {
+            background: var(--accent);
+            color: #1e293b;
+        }
+
+        .note-card .tag.green {
+            background: #10b981;
+            color: #fff;
+        }
+
+        .note-card .tag.pink {
+            background: #ec4899;
+            color: #fff;
+        }
+
+        .note-card .divider {
+            border: none;
+            border-top: 2px dashed var(--border);
+            margin: 24px 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+        }
+
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0 6px;
+        }
+
+        .badge-list .badge {
+            background: var(--bg);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+        }
+
+        .badge-list .badge i {
+            margin-right: 6px;
+            color: var(--accent);
+        }
+
+        /* ── Tables ── */
+        .note-table-wrap {
+            overflow-x: auto;
+            margin: 14px 0 6px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .note-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .note-table th {
+            background: var(--primary);
+            color: #fff;
+            font-weight: 600;
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        .note-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .note-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .note-table tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        /* ── Special Blocks ── */
+        .info-box {
+            background: rgba(26, 42, 108, 0.04);
+            border-left: 4px solid var(--primary);
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 14px 0;
+        }
+
+        .info-box.warm {
+            border-left-color: var(--accent);
+            background: rgba(245, 166, 35, 0.06);
+        }
+
+        .info-box.green {
+            border-left-color: #10b981;
+            background: rgba(16, 185, 129, 0.06);
+        }
+
+        .info-box.pink {
+            border-left-color: #ec4899;
+            background: rgba(236, 72, 153, 0.06);
+        }
+
+        .info-box strong {
+            color: var(--primary-dark);
+        }
+
+        .stage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 12px 0;
+        }
+
+        .stage-card {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+        }
+
+        .stage-card .age {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        .stage-card .name {
+            font-weight: 600;
+            font-size: 16px;
+            margin: 2px 0 6px;
+        }
+
+        .stage-card ul {
+            padding-left: 18px;
+            margin: 6px 0 0;
+            font-size: 14px;
+        }
+
+        /* ── Search Highlight ── */
+        .search-highlight {
+            background: rgba(245, 166, 35, 0.35);
+            padding: 1px 4px;
+            border-radius: 4px;
+        }
+
+        /* ── No results ── */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+
+        .no-results i {
+            font-size: 48px;
+            color: var(--border);
+            margin-bottom: 16px;
+        }
+
+        .no-results h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 1024px) {
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .stage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay.active {
+                display: block;
+            }
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .main {
+                margin-left: 0;
+                padding: 0 18px 40px;
+            }
+            .page-header {
+                padding-top: 72px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .page-header h2 {
+                font-size: 22px;
+            }
+            .search-wrap {
+                width: 100%;
+            }
+            .search-wrap input {
+                width: 100%;
+            }
+            .note-card {
+                padding: 20px 18px;
+            }
+            .note-card h3 {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .note-card {
+                padding: 16px 14px;
+            }
+            .page-header h2 {
+                font-size: 19px;
+            }
+            .sidebar-brand h1 {
+                font-size: 17px;
+            }
+            .sidebar-nav a {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+        }
+
+        /* ── Print tweaks ── */
+        @media print {
+            .sidebar,
+            .menu-toggle,
+            .sidebar-overlay,
+            .search-wrap {
+                display: none !important;
+            }
+            .main {
+                margin-left: 0 !important;
+                padding: 20px !important;
+            }
+            .page-header {
+                position: static !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+            }
+            .note-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── Mobile Toggle ─── -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ─── Sidebar ─── -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <h1><i class="fas fa-graduation-cap"></i> CTET CDP</h1>
+            <div class="sub">Complete Handwritten Notes · Study Table Amrita</div>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+            <div class="nav-label">📖 Chapters</div>
+            <a href="#" data-section="development" class="active"><i class="fas fa-seedling"></i> Development</a>
+            <a href="#" data-section="stages"><i class="fas fa-clock"></i> Stages of Dev.</a>
+            <a href="#" data-section="piaget"><i class="fas fa-brain"></i> Piaget</a>
+            <a href="#" data-section="vygotsky"><i class="fas fa-users"></i> Vygotsky</a>
+            <a href="#" data-section="thorndike"><i class="fas fa-flask"></i> Thorndike</a>
+            <a href="#" data-section="pavlov"><i class="fas fa-bell"></i> Pavlov</a>
+            <a href="#" data-section="kohler"><i class="fas fa-lightbulb"></i> Kohler</a>
+            <a href="#" data-section="chomsky"><i class="fas fa-language"></i> Chomsky</a>
+            <a href="#" data-section="bloom"><i class="fas fa-layer-group"></i> Bloom</a>
+            <a href="#" data-section="bandura"><i class="fas fa-eye"></i> Bandura</a>
+            <a href="#" data-section="principles"><i class="fas fa-list-check"></i> Principles</a>
+            <a href="#" data-section="intelligence"><i class="fas fa-cogs"></i> Intelligence</a>
+            <a href="#" data-section="gardner"><i class="fas fa-puzzle-piece"></i> Gardner</a>
+            <a href="#" data-section="ncf"><i class="fas fa-book-open"></i> NCF 2005</a>
+            <a href="#" data-section="rte"><i class="fas fa-gavel"></i> RTE 2009</a>
+            <a href="#" data-section="commissions"><i class="fas fa-landmark"></i> Commissions</a>
+            <a href="#" data-section="child-centered"><i class="fas fa-child"></i> Child Centered</a>
+            <a href="#" data-section="learning-disabilities"><i class="fas fa-puzzle-piece"></i> Learning Disabilities</a>
+            <a href="#" data-section="teaching-methods"><i class="fas fa-chalkboard"></i> Teaching Methods</a>
+            <a href="#" data-section="socialization"><i class="fas fa-handshake"></i> Socialization</a>
+            <a href="#" data-section="cce"><i class="fas fa-chart-line"></i> CCE</a>
+            <a href="#" data-section="gender"><i class="fas fa-venus-mars"></i> Gender</a>
+            <a href="#" data-section="individual-differences"><i class="fas fa-user-plus"></i> Individual Differences</a>
+            <a href="#" data-section="emotions"><i class="fas fa-heart"></i> Emotions</a>
+            <a href="#" data-section="motivation"><i class="fas fa-rocket"></i> Motivation</a>
+            <a href="#" data-section="thinking"><i class="fas fa-lightbulb"></i> Thinking</a>
+            <a href="#" data-section="diagnostic"><i class="fas fa-stethoscope"></i> Diagnostic &amp; Remedial</a>
+            <a href="#" data-section="nep2020"><i class="fas fa-flag"></i> NEP 2020</a>
+            <a href="#" data-section="metacognition"><i class="fas fa-arrows-spin"></i> Metacognition</a>
+        </nav>
+        <div class="sidebar-footer">
+            <i class="fas fa-whatsapp" style="color:#25D366;"></i> 9296434719
+        </div>
+    </aside>
+
+    <!-- ─── Main ─── -->
+    <main class="main" id="mainContent">
+
+        <!-- Header -->
+        <header class="page-header">
+            <h2><i class="fas fa-book"></i> <span id="sectionTitle">Development</span></h2>
+            <div class="search-wrap">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search notes..." autocomplete="off" />
+                <span class="search-results-count" id="searchCount"></span>
+            </div>
+        </header>
+
+        <!-- ─── All Sections ─── -->
+        <div id="sectionsContainer">
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Development -->
+            <!-- ============================================================ -->
+            <div class="content-section" data-section="development">
+                <div class="note-card">
+                    <h3><i class="fas fa-seedling"></i> विकास (Development) vs वृद्धि (Growth)</h3>
+                    <p><strong>विकास</strong> एक सतत् प्रक्रिया है जिसमें <span class="highlight">गुणात्मक</span> (Qualitative) एवं <span class="highlight">परिमाणात्मक</span> (Quantitative) दोनों प्रकार के परिवर्तन सम्मिलित होते हैं।</p>
+                    <ul>
+                        <li><strong>गुणात्मक परिवर्तन</strong> – कार्यशैली, कार्यक्षमता, भावनात्मक समझ आदि।</li>
+                        <li><strong>परिमाणात्मक परिवर्तन</strong> – ऊँचाई, वज़न, आकार आदि (जिन्हें मापा जा सके)।</li>
+                    </ul>
+                    <p>विकासात्मक परिवर्तन <span class="highlight">Progressive, Orderly, Sequential</span> (POS) होते हैं।</p>
+                    <div class="info-box">
+                        <strong>सतत्:</strong> लगातार चलने वाली प्रक्रिया — पीढ़ी की अवस्था पर पुनः व्यान नहीं देना (Not reversible but modifiable)।<br>
+                        <strong>विकास</strong> – मानसिक, सामाजिक, संवेगात्मक, शारीरिक आदि पक्षों में होता है।
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>शारीरिक विकास (Physical Development)</h4>
+                    <p>ऊँचाई, वज़न, आकार, आकृति आदि।</p>
+
+                    <h4>गति विकास (Motor Development)</h4>
+                    <p><span class="highlight">Speed, Accuracy and Precision</span></p>
+                    <div class="grid-2">
+                        <div class="info-box green">
+                            <strong>स्थूल गतिक कौशल (Gross Motor)</strong>
+                            <ul>
+                                <li>बड़ी मांसपेशियाँ – हाथ, पैर, धड़</li>
+                                <li>चलना, दौड़ना, कूदना</li>
+                            </ul>
+                        </div>
+                        <div class="info-box pink">
+                            <strong>सूक्ष्म गतिक कौशल (Fine Motor)</strong>
+                            <ul>
+                                <li>छोटी मांसपेशियाँ – उँगलियाँ, आँखें</li>
+                                <li>ड्राइंग, पेंटिंग, लिखना</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p><span class="tag">Note</span> विकास <strong>Gross → Fine</strong> (स्थूल से सूक्ष्म) की ओर होता है।</p>
+                    <hr class="divider" />
+
+                    <h4>संज्ञानात्मक विकास (Cognitive Development)</h4>
+                    <p>मानसिक क्षमताओं का विकास – सोचना, तर्क, कल्पना, स्मृति, भाषा विकास।</p>
+                    <div class="grid-2">
+                        <div class="info-box">
+                            <strong>Left Brain</strong> – Logical, Science, Math, Language
+                        </div>
+                        <div class="info-box warm">
+                            <strong>Right Brain</strong> – Creativity, Drawing, Music, Dance
+                        </div>
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>सामाजिक विकास (Social Development)</h4>
+                    <p>समाज के अंतर्गत निहित नियमों का अनुपालन करना। <span class="highlight">Moral Development</span> इसी से संबंधित है।</p>
+                    <div class="info-box">
+                        <strong>समाजीकरण (Socialisation):</strong> मूल्यों, मानदंडों और सामाजिक रूप से स्वीकृत व्यवहारों को सीखने, अनुकूलित करने और आत्मसात करने की प्रक्रिया — जीवनपर्यन्त चलती है (infancy to death)।
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>संवेगात्मक विकास (Emotional Development)</h4>
+                    <p>भावनाएँ हमारे जीवन में रंग भरती हैं। <span class="highlight">Emotions and Cognition are interrelated.</span></p>
+                    <div class="info-box warm">
+                        <strong>भावनाएँ:</strong> जानें और प्रबंधित करें — Emotional development is about knowing and managing your emotions.
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>वृद्धि (Growth) vs विकास (Development)</h4>
+                    <ul>
+                        <li><strong>वृद्धि</strong> – विकास का छोटा हिस्सा; <span class="highlight">Quantitative</span> (मात्रात्मक) परिवर्तन; मापा जा सकता है (kg, inches, cm)।</li>
+                        <li><strong>विकास</strong> – <span class="highlight">“गर्भ से क़ब्र”</span> (womb to tomb) तक चलने वाली प्रक्रिया; <span class="highlight">Qualitative + Quantitative</span>; आकलन (Assessment) किया जा सकता है, मापन नहीं।</li>
+                        <li><strong>परिपक्वता (Maturity)</strong> – विकास का ही हिस्सा; <span class="highlight">Heredity</span> (आनुवंशिकता) से संबंधित।</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>Chess (सेस):</strong> खेलना विकास का हिस्सा है; लंबाई बढ़ना वृद्धि का।
+                    </div>
+                </div>
+
+                <div class="note-card">
+                    <h3><i class="fas fa-arrows-spin"></i> विकास की विशेषताएँ</h3>
+                    <ul>
+                        <li>विकास की दर <span class="highlight">व्यक्ति-व्यक्ति में भिन्न</span> होती है।</li>
+                        <li>विकास <span class="highlight">सामान्य से विशिष्ट</span> (general to specific) की ओर बढ़ता है।</li>
+                        <li>Growth &amp; Development = <span class="highlight">Heredity × Environment</span></li>
+                        <li>विकास <span class="highlight">पूर्वानुमान</span> (predictable) है।</li>
+                        <li>सभी कारकों के बीच <span class="highlight">निरंतर अंतर्क्रिया</span> होती है।</li>
+                        <li>सभी प्रकार के विकास <span class="highlight">परस्पर संबंधित</span> (interrelated) हैं — PCSE (Physical, Cognitive, Social, Emotional)।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Stages of Development -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="stages">
+                <div class="note-card">
+                    <h3><i class="fas fa-clock"></i> विकास की अवस्थाएँ (Stages of Development)</h3>
+                    <div class="stage-grid">
+                        <div class="stage-card">
+                            <div class="age">0 – 2 वर्ष</div>
+                            <div class="name">शैशवावस्था (Infancy)</div>
+                            <ul>
+                                <li>इन्द्रियों (Senses) से सीखता है।</li>
+                                <li>Motor Action (गति क्रिया) द्वारा सीखता है।</li>
+                                <li>Sensitive Period — ज्ञानेन्द्रियाँ सक्रिय।</li>
+                                <li>Physical &amp; Mental Development – तीव्र (fast)।</li>
+                            </ul>
+                        </div>
+                        <div class="stage-card">
+                            <div class="age">2 – 6 वर्ष</div>
+                            <div class="name">पूर्व बाल्यावस्था (Early Childhood)</div>
+                            <ul>
+                                <li>Toy age / Play age (Erikson)</li>
+                                <li><span class="highlight">Fastest Language Development</span></li>
+                                <li>Imitative age (नकल करके सीखना)</li>
+                                <li>Physical Development – fastest after birth</li>
+                                <li>Socialization भी rapid होती है।</li>
+                            </ul>
+                        </div>
+                        <div class="stage-card">
+                            <div class="age">6 – 12 वर्ष</div>
+                            <div class="name">उत्तर बाल्यावस्था (Later Childhood)</div>
+                            <ul>
+                                <li>Gang age (टोली अवस्था)</li>
+                                <li>Game age / Sports</li>
+                                <li>Elementary school age</li>
+                            </ul>
+                        </div>
+                        <div class="stage-card">
+                            <div class="age">12 – 18 वर्ष</div>
+                            <div class="name">किशोरावस्था (Adolescence)</div>
+                            <ul>
+                                <li>W.H.O. — 10–19 वर्ष (विस्तृत)</li>
+                                <li>पहचान निर्माण, अमूर्त चिंतन</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Prenatal Stage (प्रसवपूर्व अवस्था):</strong> गर्भधारण से जन्म तक — 9 माह 10 दिन / 280 दिन / 40 सप्ताह। इस अवस्था का पूर्ण विकास गर्भवती माँ पर निर्भर करता है।
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Piaget -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="piaget">
+                <div class="note-card">
+                    <h3><i class="fas fa-brain"></i> जीन पियाजे – संज्ञानात्मक विकास का सिद्धांत</h3>
+                    <p><span class="tag">Switzerland</span> <span class="tag gold">Cognitive Development Theory</span></p>
+                    <ul>
+                        <li>पियाजे स्विट्ज़रलैंड के मनोवैज्ञानिक थे।</li>
+                        <li>इन्होंने अपने बच्चों व आस-पड़ोस के बच्चों पर संज्ञानात्मक विकास का अध्ययन किया।</li>
+                        <li>इसे <span class="highlight">“विकासात्मक सिद्धांत”</span> और <span class="highlight">“अवस्था का सिद्धांत”</span> भी कहा जाता है।</li>
+                        <li>बच्चे <span class="highlight">सक्रिय ज्ञान निर्माता</span> हैं – वैज्ञानिक की तरह अपने सिद्धांतों की रचना करते हैं।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>संज्ञानात्मक विकास की अवधारणाएँ</h4>
+                    <ul>
+                        <li><strong>अनुकूलन (Adaptation):</strong> वातावरण के अनुसार स्वयं को ढालना।
+                            <ul>
+                                <li><strong>आत्मसात्करण (Assimilation):</strong> पूर्व ज्ञान को नए ज्ञान के साथ जोड़ना।</li>
+                                <li><strong>समायोजन (Accommodation):</strong> पूर्व ज्ञान में परिवर्तन करके वातावरण से तालमेल बिठाना।</li>
+                            </ul>
+                        </li>
+                        <li><strong>सम्मयधारण / संतुलन (Equilibration):</strong> आत्मसात्करण और समायोजन के बीच संतुलन कायम करना।</li>
+                        <li><strong>स्कीम्म (Schemes):</strong> अनुभव या व्यवहार की संगठित संज्ञानात्मक संरचना।</li>
+                        <li><strong>स्कीमा (Schema):</strong> मस्तिष्क में संग्रहित जानकारी का उपयोग करके किसी विषय के प्रति धारणा बनाना।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>पियाजे के संज्ञानात्मक विकास की चार अवस्थाएँ</h4>
+
+                    <div class="info-box green">
+                        <strong>1. संवेदी-पेशीय अवस्था (Sensory-Motor Stage) — 0–2 वर्ष</strong>
+                        <ul>
+                            <li>बच्चा इन्द्रियों के माध्यम से सीखता है।</li>
+                            <li><span class="highlight">“वस्तु स्थायित्व” (Object Permanence)</span> – बच्चा वस्तुओं की छाप मस्तिष्क में बनाने लगता है, छिपी वस्तु को भी ढूँढ़ लेता है।</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box warm">
+                        <strong>2. प्रवं-संक्रियात्मक अवस्था (Pre-Operational Stage) — 2–7 वर्ष</strong>
+                        <ul>
+                            <li>क्रिया करने से पहले की अवस्था – देखता है, समझता है, लेकिन क्रिया नहीं कर पाता।</li>
+                            <li><strong>जीववाद (Animism):</strong> सजीव व निर्जीव में अंतर नहीं कर पाता।</li>
+                            <li><strong>अहंकेन्द्रित (Egocentrism):</strong> सोचता है कि सब लोग उसी तरह सोचते हैं जैसे वह सोचता है।</li>
+                            <li><strong>अपलटनीय (Irreversibility):</strong> वस्तुओं, संख्याओं को उलट-पलट नहीं सीखता। (जैसे 4+6=10, 6+4=?)</li>
+                            <li>मुद्रा, संप्रत्याय, दूरी, भार, ऊँचाई आदि की अवधारणा का अभाव।</li>
+                            <li><strong>केंद्रिकरण (Centration):</strong> एक विशेषता पर ध्यान केंद्रित करता है।</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <strong>3. मूर्त-संक्रियात्मक अवस्था (Concrete Operational Stage) — 7–11 वर्ष</strong>
+                        <ul>
+                            <li>सामने रखी वस्तुओं को देखकर चिंतन कर सकता है।</li>
+                            <li>अपलटनीय, जीववाद, मुद्रा, भार आदि अवधारणाओं का विकास होता है।</li>
+                            <li><strong>आगमनात्मक तर्कणा (Inductive Reasoning):</strong> उदाहरणों के आधार पर तर्क करना। <br> <span class="tag">जैसे</span> “पेड़ हमारे लिए अच्छे हैं क्योंकि हमें ऑक्सीजन मिलती है।”</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box pink">
+                        <strong>4. औपचारिक संक्रियात्मक अवस्था (Formal Operational Stage) — 11–15 वर्ष</strong>
+                        <ul>
+                            <li>संज्ञान की सर्वोच्च अवस्था।</li>
+                            <li><span class="highlight">अमूर्त चिंतन</span> (Abstract thinking) करने लगता है।</li>
+                            <li><strong>निगमनात्मक तर्कणा (Deductive Reasoning):</strong> नियमों के आधार पर तर्क करना। <br> <span class="tag">जैसे</span> Maths के प्रश्न mind में ही हल कर लेते हैं क्योंकि नियम पता हैं।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Vygotsky -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="vygotsky">
+                <div class="note-card">
+                    <h3><i class="fas fa-users"></i> लेव वाइगोत्स्की – सामाजिक-सांस्कृतिक सिद्धांत</h3>
+                    <ul>
+                        <li>वाइगोत्स्की रूसी मनोवैज्ञानिक थे।</li>
+                        <li>इन्होंने <span class="highlight">सामाजिक-सांस्कृतिक सिद्धांत</span> का प्रतिपादन किया।</li>
+                        <li>बच्चा अपने समाज और संस्कृति से अंतर्क्रिया (Interaction) करके सीखता है → <strong>सामाजिक अंतर्क्रिया के बाद विकास</strong> होता है। (पियाजे के विपरीत – पहले विकास, फिर अधिगम)</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>दो महत्वपूर्ण अवधारणाएँ</h4>
+                    <div class="info-box green">
+                        <strong>(i) ZPD (Zone of Proximal Development) / समीपस्थ विकास का क्षेत्र</strong>
+                        <p>वास्तविक विकास (real development) के स्तर तथा संभावित विकास (potential development) के स्तर के बीच के अंतर को <span class="highlight">समीपस्थ विकास का क्षेत्र</span> कहते हैं।</p>
+                    </div>
+                    <div class="info-box warm">
+                        <strong>(ii) Scaffolding (पाइ/ढाँचा)</strong>
+                        <p>व्यवस्था द्वारा दी जाने वाली <span class="highlight">Temporary help</span> या Guidance को Scaffolding कहते हैं।</p>
+                        <p><strong>MKO → More Knowledgeable Other:</strong> Teacher, Parents, Friend आदि।</p>
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>भाषा पर विचार</h4>
+                    <ul>
+                        <li>भाषा और चिंतन <strong>शुरू में अलग</strong> होते हैं, लेकिन बाद में <strong>एक साथ</strong> चलते हैं।</li>
+                        <li>पहले भाषा आती है, फिर विचार।</li>
+                        <li><strong>निजी भाषण / आंतरिक भाषा (Private Speech):</strong> बच्चा अपने कार्यों के निर्देशन के लिए भाषा का उपयोग करता है।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Thorndike -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="thorndike">
+                <div class="note-card">
+                    <h3><i class="fas fa-flask"></i> ई.एल. थार्नडाइक – त्रुटि एवं प्रयास का सिद्धांत</h3>
+                    <ul>
+                        <li>थार्नडाइक अमेरिकी मनोवैज्ञानिक, पशु वैज्ञानिक थे।</li>
+                        <li>अधिगम के सबसे पहले नियम इन्होंने दिए।</li>
+                        <li>इन्हें <span class="highlight">“प्रथम शैक्षिक मनोवैज्ञानिक”</span> कहा जाता है।</li>
+                        <li>पुस्तक – <em>Educational Psychology and Animal Intelligence</em></li>
+                    </ul>
+                    <div class="info-box warm">
+                        <strong>प्रयोग:</strong> थार्नडाइक ने एक पिंजरे में भूखी बिल्ली को बंद किया। पिंजरे में लीवर था, जिस पर पैर पड़ने पर गेट खुलता था। बिल्ली भागदौड़ करते-करते अचानक लीवर पर पैर रख देती और बाहर मछली तक पहुँच जाती। — <span class="highlight">प्रयास से त्रुटियाँ, अंततः सीख</span>।
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>थार्नडाइक के नियम</h4>
+                    <h5>प्राथमिक नियम (Primary Laws)</h5>
+                    <ul>
+                        <li><strong>अभ्यास का नियम (Law of Exercise):</strong> जितना अभ्यास, उतना सीखना।</li>
+                        <li><strong>तत्परता का नियम (Law of Readiness):</strong> जितनी तत्परता, उतनी जल्दी सीखना।</li>
+                        <li><strong>प्रभाव का नियम (Law of Effect):</strong> संतोषजनक सीख → तीव्र सीख; असंतोषजनक → सीखना संभव नहीं। (पुरस्कार और दंड का महत्व)</li>
+                    </ul>
+                    <h5>गौण नियम (Secondary Laws)</h5>
+                    <ul>
+                        <li><strong>मनोवृत्ति / अभिवृत्ति का नियम (Law of Disposition):</strong> Positive अभिवृत्ति → अधिक सीख; नकारात्मक → कम सीख।</li>
+                        <li><strong>आंशिक क्रिया का नियम (Law of Partial Action):</strong> कार्य को छोटे-छोटे भागों में बाँटकर करें → शीघ्र एवं सरल।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Pavlov -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="pavlov">
+                <div class="note-card">
+                    <h3><i class="fas fa-bell"></i> पावलव – शास्त्रीय अनुबंधन सिद्धांत (Classical Conditioning)</h3>
+                    <ul>
+                        <li>आई.पी. पावलव – रूसी वैज्ञानिक, <span class="highlight">1904 में नोबेल पुरस्कार</span>।</li>
+                        <li>किसी उत्तेजना के साथ Signal दे दिया जाए तो वैसी ही प्रतिक्रिया होगी।</li>
+                    </ul>
+                    <div class="info-box warm">
+                        <strong>प्रयोग:</strong> पावलव ने भूखे कुत्ते को खाना दिया। खाना देने से पहले घंटी बजाता था। कुछ दिन बाद कुत्ते ने घंटी और खाने के बीच संबंध स्थापित कर लिया – घंटी बजते ही लार टपकने लगी।
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>महत्वपूर्ण अवधारणाएँ</h4>
+                    <ul>
+                        <li><strong>उद्धीपक सामानीकरण (Stimulus Generalization):</strong> मिलते-जुलते उद्दीपनों के प्रति भी वैसी ही प्रतिक्रिया। (अलग-अलग घंटियों पर भी लार)</li>
+                        <li><strong>विलोपन (Extinction):</strong> Conditioned Stimulus के बाद Unconditioned Stimulus न देने पर प्रतिक्रिया बंद हो जाती है।</li>
+                        <li><strong>विभेद (Discrimination):</strong> Original Stimulus और अन्य Stimulus के बीच अंतर करना सीख जाता है।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Kohler -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="kohler">
+                <div class="note-card">
+                    <h3><i class="fas fa-lightbulb"></i> कोहलर – सूझ / अंतर्दृष्टि का सिद्धांत (Insight Theory)</h3>
+                    <p><span class="tag">Gestalt Theory</span> <span class="tag gold">Whole is greater than sum of parts</span></p>
+                    <ul>
+                        <li>गेस्टाल्ट शब्द जर्मन है – अर्थ: <span class="highlight">आकृति की समग्रता / संपूर्ण</span>।</li>
+                        <li>प्रतिपादक: वर्द्धमर, कोफ़का, कोहलर।</li>
+                        <li>अंतर्दृष्टि अधिगम सिद्धांत का श्रेय <span class="highlight">कोहलर</span> को जाता है।</li>
+                        <li>समस्या पर <span class="highlight">अचानक</span> मस्तिष्क में आया समाधान – सूझ (Insight)।</li>
+                    </ul>
+                    <div class="info-box warm">
+                        <strong>प्रयोग:</strong> कोहलर ने ‘सुलगान’ नामक Chimpanzee (वनमानुष) पर प्रयोग किया। छत पर केले लटकाए। Chimpanzee उछलकर पकड़ने का प्रयास करता, पर नहीं पहुँच पाता। फिर उसने छड़ी और बॉक्स का <span class="highlight">समग्र (whole)</span> रूप से उपयोग करके केले तोड़ लिए। — <span class="highlight">मानसिक प्रक्रिया, अंतर्दृष्टि</span>।
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Chomsky -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="chomsky">
+                <div class="note-card">
+                    <h3><i class="fas fa-language"></i> नोम चॉम्स्की – भाषा विकास का सिद्धांत (Inborn Theory)</h3>
+                    <ul>
+                        <li>चॉम्स्की अमेरिका के भाषावैज्ञानिक थे।</li>
+                        <li>इनका मानना था कि बच्चे में भाषा सीखने की <span class="highlight">स्वाभाविक क्षमता (Innate)</span> होती है।</li>
+                        <li>बच्चे के मस्तिष्क में <span class="highlight">LAD (Language Acquisition Device)</span> होता है, जिससे बच्चा भाषा सीखता है।</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>सार्वभौमिक व्याकरण (Universal Grammar):</strong> सभी भाषाओं में व्याकरण की मूल संरचना जन्मजात होती है।
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>भाषा के दो स्तर</h4>
+                    <ul>
+                        <li><strong>सतही संरचना (Surface level):</strong> केवल शब्दों/वाक्यों को सुनता/बोलता है, अर्थ नहीं समझता। <br> <span class="tag">जैसे</span> मम्मी, पापा, खाना, पीना</li>
+                        <li><strong>गहरी संरचना (Deep level):</strong> शब्दों के अर्थ एवं व्याकरण की समझ होती है।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Bloom -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="bloom">
+                <div class="note-card">
+                    <h3><i class="fas fa-layer-group"></i> ब्लूम की शैक्षिक उद्देश्यों की वर्गीकरण (Bloom's Taxonomy)</h3>
+                    <p>ब्लूम ने शैक्षिक उद्देश्यों को तीन पक्षों में वर्गीकृत किया:</p>
+                    <hr class="divider" />
+
+                    <div class="info-box">
+                        <h4>1. संज्ञानात्मक पक्ष (Cognitive Domain)</h4>
+                        <p>ज्ञान, समझ, अनुप्रयोग, विश्लेषण, संश्लेषण, मूल्यांकन</p>
+                        <div class="badge-list">
+                            <span class="badge"><i class="fas fa-chevron-right"></i> Knowledge</span>
+                            <span class="badge"><i class="fas fa-chevron-right"></i> Comprehension</span>
+                            <span class="badge"><i class="fas fa-chevron-right"></i> Application</span>
+                            <span class="badge"><i class="fas fa-chevron-right"></i> Analysis</span>
+                            <span class="badge"><i class="fas fa-chevron-right"></i> Synthesis</span>
+                            <span class="badge"><i class="fas fa-chevron-right"></i> Evaluation</span>
+                        </div>
+                    </div>
+
+                    <div class="info-box warm">
+                        <h4>2. भावनात्मक पक्ष (Affective Domain)</h4>
+                        <ul>
+                            <li>अभिग्रहण (Receiving)</li>
+                            <li>अनुक्रिया (Responding)</li>
+                            <li>आकलन (Valuing)</li>
+                            <li>संगठन (Organisation)</li>
+                            <li>मूल्यों का वर्गीकरण / विशेषीकरण (Characterization by a Value or Value Complex)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box pink">
+                        <h4>3. क्रियात्मक पक्ष (Psychomotor Domain)</h4>
+                        <ul>
+                            <li>सहज क्रियात्मक संचालन (Reflex Movements)</li>
+                            <li>आधारभूत संचालन (Basic Fundamental)</li>
+                            <li>शारीरिक योग्यताएँ (Physical Ability)</li>
+                            <li>प्रत्यक्षीकरण योग्यताएँ (Perceptual Ability)</li>
+                            <li>कौशलयुक्त संचालन (Skilled Movement)</li>
+                            <li>सुसंगत / सांकेतिक संप्रेषण (Non-discursive Communication)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Bandura -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="bandura">
+                <div class="note-card">
+                    <h3><i class="fas fa-eye"></i> अल्बर्ट बंदुरा – सामाजिक अधिगम सिद्धांत (Social Learning Theory)</h3>
+                    <ul>
+                        <li>अल्बर्ट बंदुरा – कनाडा के मनोवैज्ञानिक।</li>
+                        <li>दूसरों के व्यवहार को देखकर सीखना – <span class="highlight">अवलोकनात्मक अधिगम (Observational Learning)</span>।</li>
+                        <li>इसे <strong>अनुकरण (Imitation)</strong> या <strong>Modelling</strong> भी कहते हैं।</li>
+                    </ul>
+                    <div class="info-box warm">
+                        <strong>प्रयोग:</strong> बंदुरा ने बच्चों को 3 फिल्म दिखाई – बीबी डॉल (Bobo Doll) प्रयोग।
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>बंदुरा के अनुसार अधिगम के चरण</h4>
+                    <div class="grid-2">
+                        <div class="info-box"><strong>1. Attention</strong> – ध्यान (अवधान)</div>
+                        <div class="info-box"><strong>2. Retention</strong> – धारण (स्मरण)</div>
+                        <div class="info-box"><strong>3. Reproduction</strong> – पुनरुत्पादन (अनुक्रिया)</div>
+                        <div class="info-box"><strong>4. Motivation</strong> – अभिप्रेरणा (प्रेरणा)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Principles of Child Development -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="principles">
+                <div class="note-card">
+                    <h3><i class="fas fa-list-check"></i> बाल विकास के सिद्धांत (Principles of Child Development)</h3>
+                    <ol>
+                        <li><strong>समान प्रतिमान का सिद्धांत (Uniform Pattern):</strong> प्रत्येक जाति अपनी जाति के अनुसार विकास के प्रतिमान का अनुसरण करती है। (मानव, हाथी)</li>
+                        <li><strong>विकास की दिशा का सिद्धांत (Direction):</strong> सिर से पैर की ओर – <span class="highlight">मस्तकाधीमुखी (Cephalocaudal)</span>; मध्य से बाहर – <span class="highlight">समीपदूरपीमुखी (Proximodistal)</span>।</li>
+                        <li><strong>निरंतरता का सिद्धांत (Continuity):</strong> विकास कभी न रुकने वाली प्रक्रिया – जीवनपर्यन्त, केवल गति मंद/तेज होती है।</li>
+                        <li><strong>सामान्य से विशिष्ट क्रियाओं का सिद्धांत (General to Specific):</strong> उठना → बैठना → चलना → दौड़ना।</li>
+                        <li><strong>पूर्वानुमान का सिद्धांत (Predictability):</strong> विकास पूर्वानुमानित है – दिशा का अनुमान लगाया जा सकता है।</li>
+                        <li><strong>एकीकरण का सिद्धांत (Unitary Process):</strong> बच्चे में एकीकरण का गुण – हाथ-पैर मिलाकर काम करना।</li>
+                        <li><strong>व्यक्तिगत भिन्नता का सिद्धांत (Individual Difference):</strong> विकास की गति व्यक्ति-व्यक्ति में भिन्न।</li>
+                        <li><strong>वक्राकार बनाम रेखीय प्रगति (Spiral vs Linear):</strong> विकास कभी सीधी रेखा में नहीं चलता – गति कभी धीमी, कभी तेज।</li>
+                        <li><strong>अंतरसंबंधित विकास (Inter-Development):</strong> शारीरिक, बौद्धिक, संवेगात्मक, सामाजिक – सभी परस्पर संबंधित एवं निर्भर।</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Intelligence -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="intelligence">
+                <div class="note-card">
+                    <h3><i class="fas fa-cogs"></i> बुद्धि (Intelligence)</h3>
+                    <p><span class="tag">1885</span> सर्वप्रथम <strong>फ्रांसीसी गाल्टन</strong> ने 'बुद्धि' शब्द का प्रयोग किया।</p>
+                    <ul>
+                        <li><span class="tag">1890</span> <strong>कैटल</strong> – 'मानसिक परीक्षण' शब्द का प्रयोग; पुस्तक <em>Mental Tests and Measurements</em>।</li>
+                        <li><span class="tag">1905</span> सबसे पहला बुद्धि परीक्षण – <strong>बिने-साइमन</strong> बुद्धि परीक्षण।</li>
+                        <li><span class="tag">1908</span> <strong>अल्प्रेड बिने</strong> – 'मानसिक आयु' (Mental Age) शब्द का प्रयोग।</li>
+                        <li><span class="tag">1912</span> <strong>स्टर्न और कहलमान</strong> – बुद्धि-लब्धि (IQ) का सूत्र: <br> <span class="highlight">IQ = (Mental Age / Chronological Age) × 100</span></li>
+                        <li><span class="tag">1916</span> <strong>टर्मिन</strong> – IQ सूत्र में संशोधन, ×100 जोड़ा।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>बुद्धि-लब्धि (IQ) वर्गीकरण</h4>
+                    <div class="note-table-wrap">
+                        <table class="note-table">
+                            <thead><tr><th>IQ Range</th><th>Category</th></tr></thead>
+                            <tbody>
+                                <tr><td>25 से कम</td><td>महामूर्ख (Idiot)</td></tr>
+                                <tr><td>25–49</td><td>मूर्ख (Imbecile)</td></tr>
+                                <tr><td>50–69</td><td>अल्प बुद्धि (Moron)</td></tr>
+                                <tr><td>70–79</td><td>शीण / हीन बुद्धि (Borderline)</td></tr>
+                                <tr><td>80–89</td><td>मंदबुद्धि (Dull)</td></tr>
+                                <tr><td>90–99</td><td>निम्न सामान्य</td></tr>
+                                <tr><td>110–119</td><td>उच्च सामान्य</td></tr>
+                                <tr><td>120–129</td><td>प्रखर / श्रेष्ठ</td></tr>
+                                <tr><td>130–139</td><td>उत्कृष्ट (Superior)</td></tr>
+                                <tr><td>140 से अधिक</td><td>अति उत्कृष्ट / प्रतिभाशाली / मेघावी (Genius)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p><strong>बैसल वर्ष:</strong> जिस अधिकतम आयु स्तर के प्रश्न हल कर लेता है।<br>
+                        <strong>टर्मिनल वर्ष:</strong> जिस आयु स्तर के प्रश्न हल नहीं कर पाता।</p>
+                    <hr class="divider" />
+
+                    <h4>बुद्धि के सिद्धांत</h4>
+                    <ul>
+                        <li><strong>एक कारक सिद्धांत (Uni-factor):</strong> बिने – सभी में एक ही प्रकार की बुद्धि।</li>
+                        <li><strong>द्वि-कारक सिद्धांत (Two-factor):</strong> स्पीयरमैन – G (सामान्य) + S (विशिष्ट) तत्व।</li>
+                        <li><strong>त्रि-कारक सिद्धांत (Three-factor):</strong> स्पीयरमैन – G + S + समूह तत्व (Group)।</li>
+                        <li><strong>बहु-कारक सिद्धांत (Multi-factor):</strong> थार्नडाइक – बुद्धि कई स्वतंत्र योग्यताओं का समूह।</li>
+                        <li><strong>समूह तत्व कारक सिद्धांत (Group-factor):</strong> शर्सटन – 7 प्राथमिक मानसिक योग्यताएँ:
+                            <ul>
+                                <li>प्राथमिक समझ (Primary comprehension)</li>
+                                <li>सांख्यिक योग्यता (Numerical Ability)</li>
+                                <li>प्रत्यक्षीकरण गति (Perceptual Speed)</li>
+                                <li>स्थान संबंधी योग्यता (Spatial Ability)</li>
+                                <li>तर्क शक्ति (Reasoning)</li>
+                                <li>शब्द-प्रवाह (Word-Fluency)</li>
+                                <li>स्मृति (Memory)</li>
+                            </ul>
+                        </li>
+                        <li><strong>प्रतिदर्श सिद्धांत (Sampling Theory):</strong> जी. रच. थॉमसन – बौद्धिक व्यवहार अनेक स्वतंत्र योग्यताओं पर निर्भर।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>स्टर्नबर्ग का त्रिआधारी सिद्धांत (Triarchic Theory)</h4>
+                    <ul>
+                        <li><strong>अनुभवात्मक बुद्धि (Experiential):</strong> अनुभवों से नई खोज/सृजन।</li>
+                        <li><strong>घटकीय बुद्धि (Componential):</strong> कल्पना शक्ति, अमूर्त बुद्धि, हर चीज के पीछे कारण जानना।</li>
+                        <li><strong>सन्दर्भात्मक बुद्धि (Contextual):</strong> सूचनाओं का उपयोग करके पर्यावरण से सामंजस्य, व्यावहारिक लाभ।</li>
+                    </ul>
+                    <h5>स्टर्नबर्ग के 5 चरण</h5>
+                    <ol>
+                        <li>कूटसंकेत (Encoding)</li>
+                        <li>अनुमान (Inferring)</li>
+                        <li>व्यवस्था (Mapping)</li>
+                        <li>उपयोग (Application)</li>
+                        <li>अनुक्रिया (Response – Best Solution)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Gardner -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="gardner">
+                <div class="note-card">
+                    <h3><i class="fas fa-puzzle-piece"></i> हावर्ड गार्डनर – बहु-बुद्धि सिद्धांत (Multiple Intelligences)</h3>
+                    <p>हावर्ड गार्डनर (1983) – बुद्धि कोई एक तत्व नहीं, बल्कि कई स्वतंत्र बुद्धियों का अस्तित्व।</p>
+                    <div class="grid-2">
+                        <div class="info-box"><strong>1. शाब्दिक-भाषाई (Verbal-Linguistic)</strong><br>शब्दों और भाषा का ज्ञान – कवि, लेखक, पत्रकार</div>
+                        <div class="info-box"><strong>2. तार्किक-गणितीय (Logical-Mathematical)</strong><br>तर्क, गणना – Accountant, Banker, Scientist</div>
+                        <div class="info-box"><strong>3. स्थानिक (Spatial)</strong><br>चित्र, अंतरिक्ष, कल्पना – मूर्तिकार, वास्तुकार</div>
+                        <div class="info-box"><strong>4. शारीरिक-गतिक (Bodily-Kinesthetic)</strong><br>शारीरिक गति – एथलीट, डांसर</div>
+                        <div class="info-box"><strong>5. संगीतात्मक (Musical)</strong><br>संगीत की बुद्धि – Singer, Entertainer</div>
+                        <div class="info-box"><strong>6. अन्तर्व्यक्तिक (Interpersonal)</strong><br>दूसरों के साथ interact – नेता, सामाजिक कार्यकर्ता</div>
+                        <div class="info-box"><strong>7. अन्तःव्यक्तिक (Intrapersonal)</strong><br>स्वयं के साथ interact – आध्यात्मिक गुरु</div>
+                        <div class="info-box"><strong>8. प्रकृतिवादी (Naturalistic)</strong><br>प्रकृति के निकट – कृषक, वनस्पतिशास्त्री</div>
+                        <div class="info-box" style="grid-column: 1 / -1;"><strong>9. अस्तित्ववादी (Existential)</strong><br>जीवन के अस्तित्व के बारे में सोच – दार्शनिक, साधु-संत</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: NCF 2005 -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="ncf">
+                <div class="note-card">
+                    <h3><i class="fas fa-book-open"></i> राष्ट्रीय पाठ्यचर्चा की रूपरेखा 2005 (NCF 2005)</h3>
+                    <ul>
+                        <li>NCF 2005 एक दस्तावेज है जिसमें शिक्षा पर चर्चा की गई – बच्चों को क्या और किस प्रकार से पढ़ाया जाना चाहिए।</li>
+                        <li>यह रवीन्द्रनाथ टैगोर के <em>“सभ्यता और प्रगति”</em> निबंध से प्रेरित है।</li>
+                        <li>NCF 2005 के अनुसार – <span class="highlight">स्कूली शिक्षा पाठ्यपुस्तक केंद्रित न हो, बाल केंद्रित हो।</span></li>
+                        <li>NCF 2005 का अनुवाद संविधान की <strong>आठवीं अनुसूची</strong> में दी गई भाषाओं में किया गया।</li>
+                        <li>NCF 2005 <strong>प्रोफेसर यशपाल</strong> की अध्यक्षता में तैयार किया गया।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>NCF 2005 के मार्गदर्शी सिद्धांत</h4>
+                    <ul>
+                        <li>✔ ज्ञान को स्कूल के बाहरी जीवन से जोड़ा जाए।</li>
+                        <li>✔ पढ़ाई को रटने (rote) की प्रणाली से मुक्त किया जाए।</li>
+                        <li>✔ पाठ्यचर्चा पाठ्यपुस्तक केंद्रित न हो।</li>
+                        <li>✔ विद्यालय में शिक्षा को विभिन्न प्रकार की गतिविधियों से जोड़ा जाए।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>NCF 2005 में शिक्षक के प्रति दृष्टिकोण</h4>
+                    <p>शिक्षक <span class="highlight">ज्ञान का स्रोत नहीं</span>, अपितु एक <span class="highlight">सुगमकर्ता (Facilitator)</span> है, जो बच्चों को सूचना को अर्थ/बोध में बदलने की प्रक्रिया में सहायक होता है।</p>
+
+                    <h4>NCF 2005 में बच्चों के प्रति दृष्टिकोण</h4>
+                    <p>प्रत्येक बच्चे की सीखने की गति/प्रकृति अलग होती है। सभी बच्चे सक्रिय रूप से पूर्व ज्ञान एवं उपलब्ध सामग्री/गतिविधियों के आधार पर अपने लिए अर्थ निर्माण करते हैं।</p>
+
+                    <h4>NCF 2005 पाँच विधियों पर जोर देता है</h4>
+                    <div class="badge-list">
+                        <span class="badge">करके सीखना</span>
+                        <span class="badge">निरीक्षण विधि</span>
+                        <span class="badge">परीक्षण विधि</span>
+                        <span class="badge">सामूहिक विधि</span>
+                        <span class="badge">मिश्रित विधि</span>
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>महत्वपूर्ण प्रश्न</h4>
+                    <ul>
+                        <li><strong>NCF 2005 में किसकी समझ प्राप्त होती है?</strong> – <span class="highlight">रचनावाद (Constructivism)</span> से।</li>
+                        <li><strong>NCF 2005 के अनुसार शिक्षक की भूमिका?</strong> – <span class="highlight">सुविधादाता (Facilitator)</span> की।</li>
+                        <li><strong>NCF 2005 के अनुसार अंग्रेजी सीखने का उद्देश्य?</strong> – <span class="highlight">बहुभाषावाद (Multilingualism)</span>।</li>
+                        <li><strong>NCF 2005 बल देता है:</strong> – <span class="highlight">करके सीखने (Learning by doing)</span> पर।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: RTE 2009 -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="rte">
+                <div class="note-card">
+                    <h3><i class="fas fa-gavel"></i> शिक्षा का अधिकार अधिनियम 2009 (RTE 2009)</h3>
+                    <ul>
+                        <li><span class="tag">धारा 28</span> शिक्षक प्राइवेट ट्यूशन नहीं पढ़ा सकता।</li>
+                        <li><strong>प्राथमिक कक्षाओं में छात्र : शिक्षक अनुपात</strong> – <span class="highlight">30 : 1</span></li>
+                        <li><strong>उच्च प्राथमिक स्तर पर</strong> – <span class="highlight">35 : 1</span></li>
+                        <li>यदि कक्षा 1–8 में प्रवेशित सदस्य 200 से अधिक तो अनुपात – <span class="highlight">40 : 1</span></li>
+                        <li>यदि प्राथमिक स्तर पर 150+ बच्चे तो – 1 प्रधानाध्यापक + 5 शिक्षक।</li>
+                        <li><strong>शिक्षक के लिए सप्ताह में न्यूनतम कार्य घंटे</strong> – <span class="highlight">45 घंटे</span></li>
+                        <li><strong>प्राथमिक स्तर – न्यूनतम शैक्षणिक घंटे/कार्य दिवस:</strong> 800 घंटे, 200 दिन</li>
+                        <li><strong>उच्च प्राथमिक स्तर:</strong> 1000 घंटे, 220 दिन</li>
+                        <li><strong>बालक का निष्कासन:</strong> कक्षा 8 तक नहीं किया जा सकता।</li>
+                        <li><strong>कक्षा 1–5 के लिए घर से विद्यालय की दूरी:</strong> 1 km</li>
+                        <li><strong>SMC (School Management Committee) का अध्यक्ष:</strong> <span class="highlight">अभिभावक</span>।</li>
+                        <li>विशेष आवश्यकताओं वाले बच्चे – <span class="highlight">समावेशी शिक्षा</span> व्यवस्था के अंतर्गत।</li>
+                        <li>दिव्यांग बच्चों के लिए निःशुल्क शिक्षा – <span class="highlight">18 वर्ष</span> तक।</li>
+                        <li>भारत शिक्षा को मौलिक अधिकार घोषित करने वाला <span class="highlight">135वाँ</span> देश बना।</li>
+                        <li>शिक्षक प्रशिक्षण मानक – <span class="highlight">NCTE</span> को अधिकार।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Commissions -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="commissions">
+                <div class="note-card">
+                    <h3><i class="fas fa-landmark"></i> भारत में शिक्षा समितियाँ एवं आयोग</h3>
+                    <h4>स्वतंत्रता पूर्व</h4>
+                    <ul>
+                        <li><strong>कोलकाता विश्वविद्यालय परिषद</strong> – 1818</li>
+                        <li><strong>चाल्सी वुड समिति</strong> – 1824 (भारतीय शिक्षा का मैग्नाकार्ट)</li>
+                        <li><strong>हंटर शिक्षा आयोग</strong> – 1882-83 (महिला शिक्षा विकास)</li>
+                        <li><strong>सर थॉमस रैली आयोग</strong> – 1902 (1904 में Indian Universities Act)</li>
+                        <li><strong>सैडलर आयोग</strong> – 1917 (12 वर्ष स्कूली शिक्षा)</li>
+                        <li><strong>हार्टोग समिति</strong> – 1929 (व्यावसायिक एवं औद्योगिक शिक्षा)</li>
+                        <li><strong>सार्जेन्ट समिति</strong> – 1944 (6–11 वर्ष निःशुल्क एवं अनिवार्य शिक्षा)</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>स्वतंत्रता के बाद</h4>
+                    <ul>
+                        <li><strong>राधाकृष्णन आयोग</strong> – 1948-49 (UGC की स्थापना)</li>
+                        <li><strong>मुद्रालियर शिक्षा आयोग</strong> – 1952-53 (माध्यमिक शिक्षा आयोग)</li>
+                        <li><strong>डॉ. डी.एस. कोठारी आयोग</strong> – 1964 (सामाजिक उत्तरदायित्व एवं नैतिक शिक्षा)</li>
+                        <li><strong>राष्ट्रीय शिक्षा नीति 1986</strong> – 1992 में संशोधित; आचार्य राममूर्ति समिति (1990)</li>
+                        <li><strong>एम.बी. बुच समिति</strong> – 1989 (दूरस्थ शिक्षा)</li>
+                        <li><strong>जी. राम रेड्डी समिति</strong> – 1992 (दूरस्थ शिक्षा पर केंद्र परामर्श समिति)</li>
+                        <li><strong>प्रोफेसर यशपाल समिति</strong> – 1992 (बस्ते का बोझ कम करने की बात)</li>
+                        <li><strong>रामलाल पारेख समिति</strong> – 1933 (B.Ed पत्राचार समिति)</li>
+                        <li><strong>प्रोफेसर खेरुमा लिगद्दोह समिति</strong> – 1994 (पत्राचार B.Ed अवधि 14 माह)</li>
+                        <li><strong>प्रोफेसर आर. टकवाले समिति</strong> – 1995 (सेवारत अध्यापकों हेतु पत्राचार B.Ed)</li>
+                        <li><strong>राष्ट्रीय ज्ञान आयोग</strong> – 2005 (ज्ञान आधारित समाज, प्राथमिक स्तर से अंग्रेजी माध्यम)</li>
+                        <li><strong>जस्टिस जे.एस. वर्मा समिति</strong> – 2012 (शिक्षकों की क्षमता की जाँच)</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>राष्ट्रीय शिक्षा नीति 2017:</strong> मसौदा – <strong>डॉ. के. कस्तूरीरंगन</strong> की अध्यक्षता में 7 सदस्यीय समिति।
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Child Centered Education -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="child-centered">
+                <div class="note-card">
+                    <h3><i class="fas fa-child"></i> बाल केंद्रित शिक्षा एवं प्रगतिशील शिक्षा</h3>
+                    <h4>बाल केंद्रित शिक्षा (Child Centered Education)</h4>
+                    <p>समर्थक – <span class="highlight">जॉन डीवी (John Dewey)</span>।</p>
+                    <ul>
+                        <li>बच्चों को केंद्र बिंदु मानकर शिक्षा प्रदान करना।</li>
+                        <li>बालक की <strong>रुचियों, प्रवृत्तियों तथा क्षमताओं</strong> को ध्यान में रखते हुए शिक्षा।</li>
+                        <li>शिक्षण <span class="highlight">रुचिकर</span> होता है।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>प्रगतिशील शिक्षा (Progressive Education)</h4>
+                    <ul>
+                        <li>बच्चे की अभिवृत्तियों, इच्छाओं के अनुसार पढ़ाना – शिक्षा-स्तर बढ़ता है।</li>
+                        <li>शिक्षा <span class="highlight">बच्चे के लिए</span> है, न कि बच्चा शिक्षा के लिए।</li>
+                        <li><span class="highlight">सर्वांगीण (all-round) विकास</span> होता है।</li>
+                        <li><span class="highlight">“करके सीखना” (Learning by doing)</span> पर बल।</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>जॉन डीवी ने शिक्षा को त्रिभुवीय प्रणाली (Tripolar Process) बताया:</strong>
+                        <ul>
+                            <li><strong>बालक</strong> – आश्रित चर (dependent variable)</li>
+                            <li><strong>विषय-वस्तु</strong> – स्वतंत्र चर (independent variable)</li>
+                            <li><strong>शिक्षक</strong> – मध्यस्थ चर (intermediate variable)</li>
+                        </ul>
+                    </div>
+                    <p>भारत में बाल केंद्रित शिक्षा का श्रेय <strong>“गीजू भाई”</strong> को दिया जाता है।</p>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Learning Disabilities -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="learning-disabilities">
+                <div class="note-card">
+                    <h3><i class="fas fa-puzzle-piece"></i> अधिगम अक्षमता (Learning Disabilities)</h3>
+                    <p>अधिगम अक्षमताएँ तंत्रिका-विकासात्मक विकार हैं जो सामान्य बुद्धि, उचित शिक्षा तथा अवसरों के होते हुए भी, सुनने, बोलने, पढ़ने, लिखने, तर्क करने या गणितीय गणना करने की क्षमता को प्रभावित करती हैं।</p>
+                    <div class="note-table-wrap">
+                        <table class="note-table">
+                            <thead><tr><th>#</th><th>अक्षमता</th><th>संबंधित कठिनाई</th></tr></thead>
+                            <tbody>
+                                <tr><td>1</td><td><strong>Dyslexia</strong></td><td>पढ़ने से संबंधित कठिनाई – शब्दों को सही ढंग से पढ़ना, समझना, स्पेलिंग करना</td></tr>
+                                <tr><td>2</td><td><strong>Dysgraphia</strong></td><td>लिखने से संबंधित कठिनाई – अक्षरों को सही ढंग से लिखना, लिखावट साफ रखना</td></tr>
+                                <tr><td>3</td><td><strong>Dyscalculia</strong></td><td>गणितीय गणना से संबंधित समस्या – संख्याओं की समझ, चिन्हों को समझना</td></tr>
+                                <tr><td>4</td><td><strong>Dysphasia</strong></td><td>बोलने से संबंधित विकार – भाषा को समझने, शब्दों के प्रयोग में कठिनाई</td></tr>
+                                <tr><td>5</td><td><strong>Dyspraxia</strong></td><td>शारीरिक कौशल से संबंधित विकार – शारीरिक समन्वय, सूक्ष्म एवं स्थूल गतियों में कठिनाई</td></tr>
+                                <tr><td>6</td><td><strong>Dysorthographia</strong></td><td>वर्तनी (स्पेलिंग) से संबंधित कठिनाई</td></tr>
+                                <tr><td>7</td><td><strong>Dysnomia</strong></td><td>नामकरण में कठिनाई – वस्तुओं, व्यक्तियों के नाम याद करने में कठिनाई</td></tr>
+                                <tr><td>8</td><td><strong>Dyschronia</strong></td><td>समय बोध से संबंधित कठिनाई – समय की समझ, समय पर कार्य करने में कठिनाई</td></tr>
+                                <tr><td>9</td><td><strong>APD</strong> (Auditory Processing Disorder)</td><td>श्रवण प्रसंस्करण विकार – सुनाई देने वाली जानकारी को समझने, याद रखने में कठिनाई (श्रवण क्षमता सामान्य)</td></tr>
+                                <tr><td>10</td><td><strong>NVLD</strong> (Non-Verbal Learning Disability)</td><td>अशाब्दिक अधिगम अक्षमता – सामाजिक समझ, दूरी-स्थानिक कौशल में कठिनाई</td></tr>
+                                <tr><td>11</td><td><strong>Dysmorphia</strong></td><td>शरीर छवि से संबंधित विकार – गलत धारणा, तनाव, चिंता</td></tr>
+                                <tr><td>12</td><td><strong>Dysthemia</strong> (Persistent Depressive Disorder)</td><td>तनाव/अवसाद से संबंधित विकार – लगातार उदासी, निराशा, कम ऊर्जा (अधिगम को प्रभावित करती है)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="info-box">
+                        <strong>मुख्य तथ्य:</strong> ये अक्षमताएँ <span class="highlight">बुद्धि को प्रभावित नहीं</span> करतीं। प्रारंभिक पहचान, उचित मार्गदर्शन, विशेष शिक्षण विधियों और सहयोग से बच्चे की अधिगम क्षमता में सुधार संभव है। प्रत्येक बच्चे की सीखने की शैली अलग होती है – <span class="highlight">धैर्य, प्रोत्साहन और सकारात्मक वातावरण</span> आवश्यक।
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Teaching Methods -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="teaching-methods">
+                <div class="note-card">
+                    <h3><i class="fas fa-chalkboard"></i> शिक्षण विधियाँ (Teaching Methods)</h3>
+
+                    <div class="info-box">
+                        <h4>1. आगमन विधि (Inductive Method)</h4>
+                        <p><span class="tag">जनक: अरस्तू</span> Student Centered · मनोवैज्ञानिक · Learning by doing</p>
+                        <ul>
+                            <li>उदाहरण → नियम</li>
+                            <li>स्थूल → सूक्ष्म</li>
+                            <li>विशिष्ट → सामान्य</li>
+                            <li>ज्ञात → अज्ञात</li>
+                            <li>मूर्त → अमूर्त</li>
+                            <li>प्रत्यक्ष → प्रमाण</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box warm">
+                        <h4>2. निगमन विधि (Deductive Method)</h4>
+                        <p><span class="tag">जनक: अरस्तू</span> Teacher Centered</p>
+                        <ul>
+                            <li>प्रमाण → प्रत्यक्ष</li>
+                            <li>सूक्ष्म → स्थूल</li>
+                            <li>सामान्य → विशिष्ट</li>
+                            <li>अज्ञात → ज्ञात</li>
+                            <li>नियम → उदाहरण</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box green">
+                        <h4>3. प्रोजेक्ट विधि (Project Method)</h4>
+                        <p><span class="tag">प्रवर्तक: किल पैट्रिक</span> Experience centered · Child centered</p>
+                        <ul>
+                            <li>समाजीकरण पर बल</li>
+                            <li>स्वतंत्र रूप से कार्य</li>
+                            <li>आत्मविश्वास पैदा होता है</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box pink">
+                        <h4>4. प्रत्यक्ष विधि (Direct Method)</h4>
+                        <ul>
+                            <li>बिना व्याकरण के नियमों के भाषा सिखाई जाती है।</li>
+                            <li>मातृभाषा की सहायता नहीं ली जाती।</li>
+                            <li>श्रव्य-दृश्य सामग्री का प्रयोग।</li>
+                            <li>प्राथमिक कक्षाओं हेतु अत्यधिक उपयोगी।</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>5. विश्लेषण विधि (Analysis Method)</h4>
+                        <p><span class="tag">जनक: हेनरी आर्मस्ट्रांग</span> समस्या को छोटे-छोटे भागों में बाँटकर अध्ययन एवं समाधान।</p>
+                    </div>
+
+                    <div class="info-box warm">
+                        <h4>6. संश्लेषण विधि (Synthesis Method)</h4>
+                        <p><span class="tag">जनक: हेनरी आर्मस्ट्रांग</span> विश्लेषण के बाद संश्लेषण – प्रायः ज्यामिति में प्रयोग।</p>
+                    </div>
+
+                    <div class="info-box green">
+                        <h4>7. अनुकरण विधि (Simulation Method)</h4>
+                        <ul>
+                            <li>बालक अनुकरण करके सीखता है।</li>
+                            <li>शिक्षक के उच्चारण की नकल करके वाचन सीखते हैं।</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box pink">
+                        <h4>8. व्याख्यान विधि (Lecture Method)</h4>
+                        <ul>
+                            <li>सबसे प्राचीन विधि – Teacher Centered</li>
+                            <li>स्मृति स्तर (Memory Level) का शिक्षण</li>
+                            <li>सामाजिक विज्ञान में सबसे अधिक प्रयोग</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h4>9. मारिया मोंटेसरी विधि (Montessori Method)</h4>
+                        <ul>
+                            <li>इटली की चिकित्सक – <span class="highlight">2.5 से 6 वर्ष</span> के बच्चों हेतु।</li>
+                            <li>शिक्षा का मूल उद्देश्य – <span class="highlight">सर्वांग विकास</span>।</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box warm">
+                        <h4>10. डाल्टन विधि (Dalton Plan)</h4>
+                        <p><span class="tag">प्रतिपादक: हेलेन पार्खर्स्ट</span> Assignment के रूप में कार्य दिए जाते हैं – बालकों को पूर्ण स्वतंत्रता।</p>
+                    </div>
+
+                    <div class="info-box green">
+                        <h4>11. भाषा संयोजन विधि (Language Incorporation Method)</h4>
+                        <ul>
+                            <li>व्याकरण शिक्षण की विधि – <span class="highlight">“अव्याकृति विधि”</span> भी कहलाती है।</li>
+                            <li>रचनाओं के माध्यम से व्याकरण का ज्ञान।</li>
+                            <li>प्राथमिक कक्षाओं हेतु उपयोगी।</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Socialization -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="socialization">
+                <div class="note-card">
+                    <h3><i class="fas fa-handshake"></i> समाजीकरण (Socialization)</h3>
+                    <p>समाजीकरण एक ऐसी प्रक्रिया है जिसमें मानव <span class="highlight">समाज (Continuously) सीखता</span> है – यह पूरे जीवन तक निरंतर चलती है।</p>
+                    <hr class="divider" />
+
+                    <h4>समाजीकरण की प्रक्रिया</h4>
+                    <ul>
+                        <li><strong>पालन-पोषण (Child Rearing):</strong> समाजीकरण में सबसे अधिक प्रभाव – अच्छा पालन-पोषण → समाज के साथ समायोजन (Adjustment) आसान।</li>
+                        <li><strong>सहयोग (Cooperation):</strong> बच्चा समाज का हिस्सा तभी बनता है जब उसे सहयोग मिलता है और वह सहयोग देना सीखता है।</li>
+                        <li><strong>अनुकरण (Imitation):</strong> नकल करके सीखना – बच्चा बड़ों की बातों का अनुकरण करके समाज का हिस्सा बनता है।</li>
+                        <li><strong>पुरस्कार एवं दण्ड (Reward and Punishment):</strong> समाज के आदर्शों के अनुसार व्यवहार → प्रशंसा; असमाजिक व्यवहार → दण्ड – जिससे पुनः ऐसा कार्य नहीं करता।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: CCE -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="cce">
+                <div class="note-card">
+                    <h3><i class="fas fa-chart-line"></i> सतत एवं व्यापक मूल्यांकन (CCE)</h3>
+                    <p>राष्ट्रीय शिक्षा नीति 1986 के अनुसार – <span class="highlight">“सतत और व्यापक मूल्यांकन जिसमें मूल्यांकन के शैक्षिक और गैर-शैक्षिक दोनों पहलू शामिल हों और जो शिक्षा की सम्पूर्ण अवधि के लिए हो।”</span></p>
+                    <hr class="divider" />
+
+                    <div class="grid-2">
+                        <div class="info-box">
+                            <strong>आकलन (Assessment)</strong>
+                            <ul>
+                                <li>शिक्षण-अधिगम प्रक्रिया का अभिन्न अंग।</li>
+                                <li>निरंतर चलने वाली प्रक्रिया।</li>
+                                <li>संक्षिप्त प्रक्रिया।</li>
+                                <li>आकलन के बाद मूल्यांकन होता है।</li>
+                            </ul>
+                        </div>
+                        <div class="info-box warm">
+                            <strong>मूल्यांकन (Evaluation)</strong>
+                            <ul>
+                                <li>तीनों पक्षों (ज्ञानात्मक, भावनात्मक, क्रियात्मक) का मापन।</li>
+                                <li>गुणात्मक एवं परिमाणात्मक दोनों निर्णय।</li>
+                                <li>व्यापक प्रक्रिया।</li>
+                                <li>मूल्य का निर्धारण करना।</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h4>मूल्यांकन की विशेषताएँ</h4>
+                    <ul>
+                        <li><strong>वैधता (Validity):</strong> मूल्यांकन वह है जो वास्तव में उसी बात का परीक्षण करे जिसके बारे में जानना चाहता है।</li>
+                        <li><strong>विश्वसनीयता (Reliability):</strong> विभिन्न परिस्थितियों में परीक्षण का स्तर पूर्णतः एक ही प्रकार का होगा तो वह मापन विश्वसनीय कहलाता है।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Gender -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="gender">
+                <div class="note-card">
+                    <h3><i class="fas fa-venus-mars"></i> लिंग एवं लैंगिकता (Gender)</h3>
+                    <ul>
+                        <li><strong>Sex (लिंग):</strong> जैविक अवधारणा (Biological concept) – XY / XX</li>
+                        <li><strong>Gender (लैंगिकता):</strong> सामाजिक अवधारणा (Social concept) – समाज द्वारा निर्मित भूमिकाएँ।</li>
+                    </ul>
+                    <div class="info-box warm">
+                        <strong>लैंगिक पूर्वाग्रह (Gender Biasness):</strong> लड़का और लड़की में अंतर किया जाता है – roles, responsibilities, boundaries समाज द्वारा बाँट दी जाती हैं। <br> <span class="tag">जैसे</span> singing/dancing में लड़कियों को प्राथमिकता, sports में लड़कों को बढ़ावा।
+                    </div>
+                    <div class="info-box">
+                        <strong>लैंगिक स्टीरियोटाइप (Gender Stereotype):</strong> पहले से चली आ रही प्रथा/सोच को मान लेना। <br> <span class="tag">जैसे</span> रसोई का काम महिलाएँ करेंगी, पुरुष बाहर जाकर काम करेंगे।
+                    </div>
+                    <div class="info-box pink">
+                        <strong>लिंग भेदभाव (Gender Discrimination):</strong> लिंग के आधार पर अनुचित या असमान व्यवहार। <br> <span class="tag">जैसे</span> ग्रामीण क्षेत्रों में लड़कियों की शिक्षा के अवसर कम मिलना। <br> <span class="highlight">इससे बच्चों में हीन भावना, आत्मविश्वास की कमी, विकास में बाधा उत्पन्न होती है।</span>
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>लैंगिक समानता (Gender Equality)</h4>
+                    <ul>
+                        <li>लिंग के आधार पर कोई असमानता या भेदभाव न किया जाए।</li>
+                        <li>सभी को समान अवसर – बिना यह देखे कि व्यक्ति लड़का है या लड़की।</li>
+                        <li><span class="tag">उदा.</span> घर के कामों और बच्चों की देखभाल की जिम्मेदारी सभी सदस्यों के बीच समान रूप से बाँटी जाए।</li>
+                    </ul>
+
+                    <h4>लैंगिक समता (Gender Equity)</h4>
+                    <ul>
+                        <li>विशिष्ट ज़रूरतों और परिस्थितियों को महत्व देना – ताकि वे पुरुषों के बराबर आ सकें।</li>
+                        <li>लैंगिक असमानता और भेदभाव को समाप्त करती है।</li>
+                        <li><span class="tag">उदा.</span> सरकारी नौकरियों में महिलाओं को आरक्षण – क्योंकि उन पर घर, परिवार, बच्चों की जिम्मेदारी भी होती है।</li>
+                        <li><span class="highlight">Gender equity, gender equality से बेहतर है</span> – क्योंकि यह biological differences की वजह से होने वाली असमानता कम करने में सहायता करती है।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Individual Differences -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="individual-differences">
+                <div class="note-card">
+                    <h3><i class="fas fa-user-plus"></i> व्यक्तिगत भिन्नताएँ (Individual Differences)</h3>
+
+                    <h4>1. अधिगम में भिन्नताएँ</h4>
+                    <ul>
+                        <li>हर बच्चा अलग गति और शैली से सीखता है।</li>
+                        <li><span class="tag">Tip</span> – विभिन्न शिक्षण विधियों का उपयोग करें (दृश्य, श्रव्य, स्पर्शात्मक)।</li>
+                    </ul>
+
+                    <h4>2. रुचियों में भिन्नताएँ</h4>
+                    <ul>
+                        <li>कुछ को Science पसंद, कुछ को Art – रुचियाँ अलग।</li>
+                        <li><span class="tag">Tip</span> – बच्चों की रुचि के अनुसार activities दें।</li>
+                    </ul>
+
+                    <h4>3. अभिक्षमता में भिन्नताएँ</h4>
+                    <ul>
+                        <li>स्वाभाविक क्षमताएँ (Aptitude) भिन्न – जैसे कुछ को संगीत में, कुछ को गणित में।</li>
+                    </ul>
+
+                    <h4>4. बुद्धि में भिन्नताएँ</h4>
+                    <ul>
+                        <li>सीखने, समझने और समस्या हल करने की क्षमता अलग-अलग।</li>
+                        <li><span class="tag">Example</span> – तुम गणित में तेज (Logical), दोस्त चित्रकला में Creative।</li>
+                        <li><span class="tag">Tip</span> – बच्चों की बुद्धि के प्रकार (Logical, Creative, Practical) पहचानकर शिक्षण सामग्री दें।</li>
+                    </ul>
+
+                    <h4>5. लैंगिक भिन्नताएँ</h4>
+                    <ul>
+                        <li>लड़के और लड़कियों में शारीरिक, मानसिक, सामाजिक क्षमताओं में भिन्नता।</li>
+                        <li><span class="tag">Tip</span> – समान अवसर दें; भेदभाव न करें।</li>
+                    </ul>
+
+                    <h4>6. उपलब्धियों में भिन्नता</h4>
+                    <ul>
+                        <li>हर बच्चा अलग-अलग विषयों में अपनी अलग उपलब्धि दिखाता है।</li>
+                        <li><span class="tag">Tip</span> – तुलना के बजाय, व्यक्तिगत ताकतों पर ध्यान दें।</li>
+                    </ul>
+
+                    <h4>7. राष्ट्रीयता के आधार पर भिन्नताएँ</h4>
+                    <ul>
+                        <li>अलग-अलग देशों के बच्चों में स्वभाव, रुचियाँ, शारीरिक बनावट अलग।</li>
+                        <li><span class="tag">Tip</span> – बहुसंस्कृतिक (Multicultural) कक्षाओं में संवेदनशीलता के साथ शिक्षण।</li>
+                    </ul>
+
+                    <h4>8. आर्थिक स्थिति के आधार पर भिन्नताएँ</h4>
+                    <ul>
+                        <li>सोच, व्यक्तित्व, अवसर और संसाधनों तक पहुँच – आर्थिक स्थिति पर निर्भर।</li>
+                        <li><span class="tag">Tip</span> – हर बच्चे को समान अवसर (Equal Opportunity) और आवश्यक Support दें।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>व्यक्तिगत भिन्नताओं के कारण</h4>
+                    <div class="grid-2">
+                        <div class="info-box">
+                            <strong>1. वंशानुक्रम (Heredity)</strong>
+                            <ul>
+                                <li>ऊँचाई, रंग, आँखें, चेहरा, शारीरिक बनावट – जन्म से मिलने वाले गुण।</li>
+                            </ul>
+                        </div>
+                        <div class="info-box warm">
+                            <strong>2. पर्यावरण (Environment)</strong>
+                            <ul>
+                                <li>परिवार, समाज, संस्कृति, शिक्षा, परंपराएँ – व्यवहार और सीखने की शैली को प्रभावित करती हैं।</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-box green">
+                        <strong>कारण = वंशानुक्रम × पर्यावरण (Heredity × Environment)</strong> – इन दोनों की जटिल अंतर्क्रिया से व्यक्तिगत भिन्नताएँ उत्पन्न होती हैं।
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>कक्षा में विविधता और शिक्षक की भूमिका</h4>
+                    <p><span class="highlight">“कक्षा एक बगीचे की तरह… हर बच्चा एक अलग फूल। शिक्षक का काम – हर फूल खिले और महके।”</span></p>
+                    <ul>
+                        <li><strong>समान अवसर (Equity &amp; Equal Opportunities):</strong> हर बच्चे को सीखने का बराबर मौका मिले।</li>
+                        <li><strong>विविध शिक्षण विधियाँ:</strong> खेल, चर्चा, प्रयोग, प्रोजेक्ट, कहानी आदि का उपयोग।</li>
+                        <li><strong>समावेशी वातावरण (Inclusive Environment):</strong> सुरक्षित, सम्मानित, महत्वपूर्ण महसूस करना।</li>
+                        <li><strong>लचीला मूल्यांकन (Flexible Assessment):</strong> केवल लिखित नहीं – प्रोजेक्ट, मौखिक, गतिविधि आधारित।</li>
+                        <li><strong>अभिभावकों से सहयोग:</strong> घर और स्कूल मिलकर बच्चे की सीखने की प्रक्रिया बेहतर बना सकते हैं।</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>निष्कर्ष:</strong> व्यक्तिगत भिन्नताओं को समझना और उनका सम्मान करना ही एक सफल शिक्षक की पहचान है।
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Emotions -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="emotions">
+                <div class="note-card">
+                    <h3><i class="fas fa-heart"></i> संवेग (Emotions)</h3>
+                    <p><span class="tag">मैकडुगल</span> ने 14 प्रकार की मूल प्रवृत्तियाँ बताईं, जिनमें से विभिन्न संवेग उत्पन्न होते हैं:</p>
+                    <div class="note-table-wrap">
+                        <table class="note-table">
+                            <thead><tr><th>मूल प्रवृत्ति</th><th>संक्रांतित संवेग</th></tr></thead>
+                            <tbody>
+                                <tr><td>पलायन (Escape)</td><td>भय (Fear)</td></tr>
+                                <tr><td>युद्ध (Combat)</td><td>क्रोध (Anger)</td></tr>
+                                <tr><td>निवृत्ति (Repulsion)</td><td>घृणा (Disgust)</td></tr>
+                                <tr><td>जिज्ञासा (Curiosity)</td><td>आश्चर्य (Wonder)</td></tr>
+                                <tr><td>वात्सल्य (Parental)</td><td>वात्सल्य (Love)</td></tr>
+                                <tr><td>शरणागति (Appeal)</td><td>विबाद (Distress)</td></tr>
+                                <tr><td>रचनात्मक (Construction)</td><td>सृजनात्मक भावना</td></tr>
+                                <tr><td>संचय प्रवृत्ति (Acquisition)</td><td>स्वामित्व की भावना</td></tr>
+                                <tr><td>सामूहिकता (Gregariousness)</td><td>अकेलापन</td></tr>
+                                <tr><td>काम (Sex)</td><td>कामुकता (Lust)</td></tr>
+                                <tr><td>आत्म-गौरव (Self-Assertion)</td><td>सकारात्मक आत्म-भावना</td></tr>
+                                <tr><td>विनय (Submission)</td><td>आत्महीनता</td></tr>
+                                <tr><td>भोजन-अन्वेषण (Food Seeking)</td><td>भूख (Appetite)</td></tr>
+                                <tr><td>हास (Laughter)</td><td>आमोद (Amusement)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Motivation -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="motivation">
+                <div class="note-card">
+                    <h3><i class="fas fa-rocket"></i> अभिप्रेरणा (Motivation)</h3>
+                    <p><span class="tag">Latin: movere / motum</span> – अभिप्रेरणा एक अंतरिक शक्ति या इच्छा है जो व्यक्ति को लक्ष्य की ओर ले जाती है।</p>
+                    <hr class="divider" />
+
+                    <h4>प्रकार</h4>
+                    <ul>
+                        <li><strong>आंतरिक अभिप्रेरणा (Internal):</strong> स्वयं से प्रेरित – <span class="tag">जैसे</span> अपनी मर्जी से Teacher बनना चाहना।</li>
+                        <li><strong>बाह्य अभिप्रेरणा (External):</strong> दूसरों द्वारा प्रेरित – <span class="tag">जैसे</span> पुरस्कार/दण्ड/प्रशंसा/लालच।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>अभिप्रेरणा के सिद्धांत</h4>
+                    <ul>
+                        <li><strong>1. मैस्लो का आवश्यकता पदानुक्रम (Maslow's Hierarchy of Needs):</strong>
+                            <ol>
+                                <li>दैहिक आवश्यकता (Physiological)</li>
+                                <li>सुरक्षा (Safety)</li>
+                                <li>आत्मीयता (Belongingness)</li>
+                                <li>सम्मान (Esteem)</li>
+                                <li>आत्म-सिद्धि (Self-Actualization)</li>
+                            </ol>
+                        </li>
+                        <li><strong>2. मूल प्रवृत्ति का सिद्धांत (Instinctive Theory):</strong> मैकडुगल।</li>
+                        <li><strong>3. उपलब्धि अभिप्रेरणा सिद्धांत (Achievement Motivation):</strong> डेविड मैकलीलैंड – चुनौतीपूर्ण कार्यों में संतोषजनक निपुणता प्राप्त करने की आशा।</li>
+                        <li><strong>4. अभिप्रेरणा स्वास्थ्य सिद्धांत (Hygiene Motivation):</strong> हर्जबर्ग – शारीरिक और मानसिक रूप से स्वस्थ व्यक्ति interest से काम करता है।</li>
+                        <li><strong>5. प्रोत्साहन का सिद्धांत (Encouragement):</strong> बाउल्स एवं कॉफिमैन – बाहरी उद्दीपक से प्रेरित होकर काम।</li>
+                        <li><strong>6. क्षेत्रीय सिद्धांत (Field Theory):</strong> कर्ट लेविन – व्यवहार उसके क्षेत्र के वातावरण के सभी कारकों से प्रभावित होता है।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>अभिप्रेरणा चक्र</h4>
+                    <ol>
+                        <li>आवश्यकता (Need)</li>
+                        <li>अंतराड़/प्रबल प्रेरणा (Drive)</li>
+                        <li>उद्दीपन/उत्तेजना (Stimulus/Arousal)</li>
+                        <li>लक्ष्य-निर्दिष्ट व्यवहार (Goal Directed Behaviour)</li>
+                        <li>उपलब्धि (Achievement)</li>
+                        <li>उद्दीपन/उत्तेजना की कमी (Reduction of Arousal)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Thinking -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="thinking">
+                <div class="note-card">
+                    <h3><i class="fas fa-lightbulb"></i> चिंतन के प्रकार (Types of Thinking)</h3>
+                    <ul>
+                        <li><strong>मूर्त चिंतन (Concrete Thinking):</strong> वस्तुओं के प्रत्यक्ष रूप से चिंतन करना।</li>
+                        <li><strong>अमूर्त चिंतन (Abstract Thinking):</strong> वस्तुओं के बिना भी विचार करना।</li>
+                        <li><strong>काल्पनिक चिंतन (Imaginary Thinking):</strong> कल्पना करना।</li>
+                        <li><strong>तार्किक चिंतन (Logical Thinking):</strong> किसी चीज के कारण के बारे में तर्क करना।</li>
+                    </ul>
+                    <div class="note-table-wrap">
+                        <table class="note-table">
+                            <thead><tr><th>क्र.सं.</th><th>चिंतन का प्रकार</th><th>मुख्य विशेषता</th></tr></thead>
+                            <tbody>
+                                <tr><td>1</td><td>आत्मकेंद्रित चिंतन (Autistic Thinking)</td><td>काल्पनिक, अवास्तविक, 'मैं' में ही सीमित</td></tr>
+                                <tr><td>2</td><td>यथार्थ चिंतन (Realistic Thinking)</td><td>वास्तविकता से बंधा हुआ</td></tr>
+                                <tr><td>3</td><td>अभिसारी चिंतन (Convergent Thinking)</td><td>एक ही दिशा में केंद्रित – एक ही समाधान (Close Ended)</td></tr>
+                                <tr><td>4</td><td>अपसारी चिंतन (Divergent Thinking)</td><td>कई दिशाओं में – कई समाधान (Open Ended)</td></tr>
+                                <tr><td>5</td><td>आलोचनात्मक चिंतन (Critical Thinking)</td><td>गहरी पड़ताल, तर्कपूर्ण समीक्षा</td></tr>
+                                <tr><td>6</td><td>सम्मिश्र चिंतन</td><td>मूर्त, अमूर्त, काल्पनिक, तार्किक सभी का मिश्रण</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Diagnostic & Remedial -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="diagnostic">
+                <div class="note-card">
+                    <h3><i class="fas fa-stethoscope"></i> निदानात्मक एवं उपचारात्मक शिक्षण</h3>
+                    <div class="info-box">
+                        <h4>निदानात्मक शिक्षण (Diagnostic Teaching)</h4>
+                        <p>निदान का अर्थ – <span class="highlight">“कारण जानना”</span> – इसमें बच्चों की असफलता / कमियों / कठिनाइयों का पता लगाया जाता है।</p>
+                    </div>
+                    <div class="info-box warm">
+                        <h4>उपचारात्मक शिक्षण (Remedial Teaching)</h4>
+                        <p>बच्चों की कमियों का पता लगाने के बाद <span class="highlight">उनका समाधान करना</span> या फिर दोबारा से शिक्षण करवाना – उपचारात्मक शिक्षण कहलाता है।</p>
+                    </div>
+                    <hr class="divider" />
+
+                    <h4>TAG WORDS – परीक्षा उपयोगी</h4>
+                    <div class="grid-2">
+                        <div class="info-box pink">
+                            <strong>NEGATIVE WORDS</strong>
+                            <ul>
+                                <li>केवल / मात्र / सिर्फ / ही (ONLY)</li>
+                                <li>रटना / याद करना / कंठस्थ करना (ROTE)</li>
+                                <li>दंड / सजा / समस्या / बोझ / हतोत्साहित</li>
+                                <li>पुस्तक केंद्रित / शिक्षक केंद्रित</li>
+                                <li>खाली स्लेट / कोरी पट्टी</li>
+                                <li>लैंगिक असमानता</li>
+                                <li>निर्देशात्मक</li>
+                                <li>बच्चे के विचार / मातृभाषा / त्रुटियों को महत्व न देना</li>
+                                <li>रोज़मर्रा / व्यावसायिक / उच्च / ग्रेड की शिक्षा</li>
+                                <li>तकनीकी / वैज्ञानिक शब्दावली</li>
+                                <li>सीमित</li>
+                                <li>व्याख्या</li>
+                            </ul>
+                        </div>
+                        <div class="info-box green">
+                            <strong>POSITIVE WORDS</strong>
+                            <ul>
+                                <li>सभी / प्रत्येक / पूरा / सम्पूर्ण</li>
+                                <li>समझना / अर्थपूर्ण अधिगम</li>
+                                <li>प्रोत्साहन / सहयोग / समाधान / उत्साहित</li>
+                                <li>बाल-केंद्रित / शिक्षार्थी-केंद्रित</li>
+                                <li>अनुभव आधारित / गतिविधि आधारित</li>
+                                <li>लैंगिक समानता</li>
+                                <li>सक्रिय</li>
+                                <li>बच्चे के विचारों को महत्व देना / मातृभाषा का प्रयोग / त्रुटियों से सीखना</li>
+                                <li>जीवनोपयोगी / व्यावसायिक / सार्वभौमिक / समावेशी शिक्षा</li>
+                                <li>तकनीकी / वैज्ञानिक शब्दावली (उचित प्रयोग)</li>
+                                <li>असीमित / व्यापक</li>
+                                <li>विश्लेषण</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: NEP 2020 -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="nep2020">
+                <div class="note-card">
+                    <h3><i class="fas fa-flag"></i> राष्ट्रीय शिक्षा नीति 2020 (NEP 2020)</h3>
+                    <ul>
+                        <li><strong>डॉ. के. कस्तूरीरंगन</strong> समिति रिपोर्ट – <span class="highlight">31 मई, 2019</span></li>
+                        <li>MHRD का नाम बदलकर <strong>शिक्षा मंत्रालय</strong> किया गया।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>नई शिक्षा संरचना – <span class="highlight">5+3+3+4</span></h4>
+                    <ul>
+                        <li><strong>5</strong> = (3–8 वर्ष) – <span class="highlight">बुनियादी / मूलभूत चरण</span> (Foundational Stage)</li>
+                        <li><strong>3</strong> = (8–11 वर्ष) – <span class="highlight">प्रारंभिक / प्राविधिकरण चरण</span> (Preparatory Stage)</li>
+                        <li><strong>3</strong> = (11–14 वर्ष) – <span class="highlight">मध्य चरण</span> (Middle Stage)</li>
+                        <li><strong>4</strong> = (14–18 वर्ष) – <span class="highlight">माध्यमिक चरण</span> (Secondary Stage)</li>
+                    </ul>
+                    <div class="info-box">
+                        <strong>प्र. NEP 2020 द्वारा अनुशंसित स्कूली शिक्षा की संरचना क्या है?</strong><br>
+                        ✔ <span class="highlight">5 + 3 + 3 + 4</span>
+                    </div>
+                    <ul>
+                        <li><strong>शिक्षक शिक्षा</strong> – 4 वर्षीय Integrated B.Ed.</li>
+                        <li><strong>भाषा</strong> – मातृभाषा / स्थानीय भाषा में शिक्षा (Class 5 तक)</li>
+                        <li><strong>समावेशन</strong> – हर बच्चे तक शिक्षा की पहुँच।</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- SECTION: Metacognition -->
+            <!-- ============================================================ -->
+            <div class="content-section hidden" data-section="metacognition">
+                <div class="note-card">
+                    <h3><i class="fas fa-arrows-spin"></i> परासंज्ञान (Metacognition)</h3>
+                    <p><span class="tag">Meta + Cognition</span> – <span class="highlight">“संज्ञान के परे”</span> – Thinking about thinking, Awareness about awareness।</p>
+                    <ul>
+                        <li><strong>अर्थ:</strong> अपनी स्वयं की विचार प्रक्रियाओं के प्रति <span class="highlight">जागरूकता और समझ</span>।</li>
+                    </ul>
+                    <hr class="divider" />
+
+                    <h4>परासंज्ञान के 4 महत्वपूर्ण बिंदु</h4>
+                    <div class="grid-2">
+                        <div class="info-box"><i class="fas fa-list-check"></i> Plan &amp; Organise</div>
+                        <div class="info-box"><i class="fas fa-eye"></i> Monitor your own work</div>
+                        <div class="info-box"><i class="fas fa-arrow-right"></i> Direct your learning</div>
+                        <div class="info-box"><i class="fas fa-rotate-left"></i> Self-reflection</div>
+                    </div>
+                    <div class="info-box warm">
+                        <strong>यानी:</strong> सोचने के बारे में सोचना, योजना बनाना, स्वयं का मूल्यांकन करना और अपने अधिगम को निर्देशित करना।
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /sectionsContainer -->
+
+        <!-- ─── No Results ─── -->
+        <div id="noResults" class="no-results" style="display:none;">
+            <i class="fas fa-search"></i>
+            <h3>कोई परिणाम नहीं मिला</h3>
+            <p>अपनी खोज को संशोधित करें और पुनः प्रयास करें।</p>
+        </div>
+
+    </main>
+
+    <!-- ─── JavaScript ─── -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ── DOM refs ──
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const toggleBtn = document.getElementById('menuToggle');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            const sections = document.querySelectorAll('.content-section');
+            const sectionTitle = document.getElementById('sectionTitle');
+            const searchInput = document.getElementById('searchInput');
+            const searchCount = document.getElementById('searchCount');
+            const noResults = document.getElementById('noResults');
+
+            let currentSection = 'development';
+            let searchQuery = '';
+
+            // ── Sidebar toggle ──
+            function toggleSidebar(open) {
+                sidebar.classList.toggle('open', open);
+                overlay.classList.toggle('active', open);
+                toggleBtn.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            }
+
+            toggleBtn.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('open')));
+            overlay.addEventListener('click', () => toggleSidebar(false));
+
+            // Close on nav link click (mobile)
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 820) toggleSidebar(false);
+                });
+            });
+
+            // ── Navigation ──
+            function navigateTo(sectionId) {
+                if (!sectionId) return;
+                currentSection = sectionId;
+
+                // Update nav
+                navLinks.forEach(a => {
+                    a.classList.toggle('active', a.dataset.section === sectionId);
+                });
+
+                // Update title
+                const activeLink = document.querySelector(`.sidebar-nav a[data-section="${sectionId}"]`);
+                if (activeLink) {
+                    sectionTitle.textContent = activeLink.textContent.trim();
+                } else {
+                    sectionTitle.textContent = sectionId.replace(/-/g, ' ');
+                }
+
+                // Show section
+                sections.forEach(s => {
+                    s.classList.toggle('hidden', s.dataset.section !== sectionId);
+                });
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Re-apply search if any
+                if (searchQuery.trim()) {
+                    performSearch(searchQuery);
+                } else {
+                    clearHighlights();
+                    noResults.style.display = 'none';
+                    sections.forEach(s => s.style.display = '');
+                }
+            }
+
+            // ── Search ──
+            function clearHighlights() {
+                document.querySelectorAll('.search-highlight').forEach(el => {
+                    const parent = el.parentNode;
+                    parent.replaceChild(document.createTextNode(el.textContent), el);
+                    parent.normalize();
+                });
+            }
+
+            function performSearch(query) {
+                const q = query.trim().toLowerCase();
+                searchQuery = q;
+                clearHighlights();
+
+                if (!q) {
+                    sections.forEach(s => s.style.display = '');
+                    noResults.style.display = 'none';
+                    searchCount.textContent = '';
+                    return;
+                }
+
+                let totalMatches = 0;
+                let visibleSections = 0;
+
+                sections.forEach(section => {
+                    // Clone to avoid disrupting live DOM
+                    const clone = section.cloneNode(true);
+                    // Get all text nodes from clone
+                    const walker = document.createTreeWalker(clone, NodeFilter.SHOW_TEXT, null, false);
+                    const textNodes = [];
+                    let node;
+                    while (node = walker.nextNode()) {
+                        textNodes.push(node);
+                    }
+
+                    let sectionMatches = 0;
+                    textNodes.forEach(textNode => {
+                        const text = textNode.textContent;
+                        if (text.toLowerCase().includes(q)) {
+                            sectionMatches++;
+                            // We'll highlight in the real DOM by traversing again
+                        }
+                    });
+
+                    if (sectionMatches > 0) {
+                        section.style.display = '';
+                        visibleSections++;
+                        totalMatches += sectionMatches;
+                        // Highlight in real DOM
+                        highlightInElement(section, q);
+                    } else {
+                        if (section.dataset.section === currentSection) {
+                            section.style.display = '';
+                            // Keep current section visible but with no highlights
+                        } else {
+                            section.style.display = 'none';
+                        }
+                    }
+                });
+
+                // Ensure current section is visible even if no match
+                const currentEl = document.querySelector(`.content-section[data-section="${currentSection}"]`);
+                if (currentEl) currentEl.style.display = '';
+
+                noResults.style.display = totalMatches === 0 ? 'block' : 'none';
+                searchCount.textContent = totalMatches > 0 ? `${totalMatches} results` : '';
+            }
+
+            function highlightInElement(element, query) {
+                const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+                const nodes = [];
+                let node;
+                while (node = walker.nextNode()) {
+                    nodes.push(node);
+                }
+                nodes.forEach(textNode => {
+                    const text = textNode.textContent;
+                    const lower = text.toLowerCase();
+                    const idx = lower.indexOf(query);
+                    if (idx !== -1) {
+                        const span = document.createElement('span');
+                        span.className = 'search-highlight';
+                        span.textContent = text.substring(idx, idx + query.length);
+                        const before = document.createTextNode(text.substring(0, idx));
+                        const after = document.createTextNode(text.substring(idx + query.length));
+                        const parent = textNode.parentNode;
+                        parent.insertBefore(before, textNode);
+                        parent.insertBefore(span, textNode);
+                        parent.insertBefore(after, textNode);
+                        parent.removeChild(textNode);
+                    }
+                });
+            }
+
+            // ── Search input ──
+            searchInput.addEventListener('input', function() {
+                const q = this.value;
+                if (!q.trim()) {
+                    searchQuery = '';
+                    clearHighlights();
+                    sections.forEach(s => s.style.display = '');
+                    noResults.style.display = 'none';
+                    searchCount.textContent = '';
+                    // Re-navigate to current section to reset
+                    navigateTo(currentSection);
+                    return;
+                }
+                performSearch(q);
+            });
+
+            // ── Nav click ──
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.dataset.section;
+                    if (!section) return;
+                    // Clear search
+                    searchInput.value = '';
+                    searchQuery = '';
+                    searchCount.textContent = '';
+                    clearHighlights();
+                    noResults.style.display = 'none';
+                    navigateTo(section);
+                });
+            });
+
+            // ── Init ──
+            navigateTo('development');
+
+            // ── Keyboard shortcut: Ctrl+K or Cmd+K ──
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+                if (e.key === 'Escape') {
+                    searchInput.blur();
+                    searchInput.value = '';
+                    searchQuery = '';
+                    searchCount.textContent = '';
+                    clearHighlights();
+                    noResults.style.display = 'none';
+                    sections.forEach(s => s.style.display = '');
+                    navigateTo(currentSection);
+                }
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
