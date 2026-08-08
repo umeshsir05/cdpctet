@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet"href="style.css"/>
     <style>
         /* ── Reset & Base ── */
         * {
@@ -700,7 +699,94 @@
             .page-header h2 {
                 font-size: 22px;
             }
+            .search-wrap {
+                width: 100%;
+            }
+            .search-wrap input {
+                width: 100%;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: stretch;
+            }
+            .header-actions .search-wrap {
+                flex: 1;
+            }
+            .note-card {
+                padding: 20px 18px;
+            }
+            .note-card h3 {
+                font-size: 18px;
+            }
+        }
 
+        @media (max-width: 480px) {
+            .note-card {
+                padding: 16px 14px;
+            }
+            .page-header h2 {
+                font-size: 19px;
+            }
+            .sidebar-brand h1 {
+                font-size: 17px;
+            }
+            .sidebar-nav a {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+            .header-actions {
+                flex-wrap: wrap;
+            }
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+
+        /* ── Print tweaks ── */
+        @media print {
+            .sidebar,
+            .menu-toggle,
+            .sidebar-overlay,
+            .search-wrap,
+            .theme-toggle {
+                display: none !important;
+            }
+            .main {
+                margin-left: 0 !important;
+                padding: 20px !important;
+            }
+            .page-header {
+                position: static !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+            }
+            .note-card {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+            body.dark-mode .note-card {
+                border: 1px solid #666;
+            }
+        }
+
+        /* Dark mode overrides for info-box strong */
+        body.dark-mode .info-box strong {
+            color: var(--primary-light);
+        }
+        body.dark-mode .note-card .highlight {
+            color: var(--text);
+            background: rgba(245, 166, 35, 0.2);
+        }
+        body.dark-mode .stage-card {
+            background: var(--card-bg);
+        }
+        body.dark-mode .badge-list .badge {
+            background: var(--card-bg);
+        }
+    </style>
 </head>
 <body>
 
@@ -2244,6 +2330,6 @@
 
         })();
     </script>
-  <script src="script.js"></script>
+
 </body>
 </html>
